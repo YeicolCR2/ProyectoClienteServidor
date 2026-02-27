@@ -1,5 +1,8 @@
 <?php
-require_once '../config/database.php';
+session_start();
 
-$database = new Database();
-$database->conectar();
+if(isset($_SESSION['usuario'])) {
+    require_once '../app/views/home.php';
+} else {
+    require_once '../app/views/auth/login.php';
+}
