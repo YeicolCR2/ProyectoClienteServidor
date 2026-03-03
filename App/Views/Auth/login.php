@@ -1,13 +1,12 @@
 <?php
-
+session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <title>Login - CineLogin</title>
+    <title>Login - Cine U XD</title>
 
     <link rel="stylesheet" href="/public/css/auth.css">
     <link rel="stylesheet" href="/public/css/base.css">
@@ -33,17 +32,24 @@
 
         <div class="login-container">
 
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="error">
+                    <?= $_SESSION['error']; ?>
+                </div>
+                <?php unset($_SESSION['error']); ?>
+            <?php endif; ?>
+            
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="success">
+                    <?= $_SESSION['success']; ?>
+                </div>
+                <?php unset($_SESSION['success']); ?>
+            <?php endif; ?>
+
             <div id="loginForm">
                 <h2>Iniciar Sesión</h2>
 
-                <?php if (isset($_SESSION['error'])): ?>
-                    <div class="error">
-                        <?= $_SESSION['error']; ?>
-                    </div>
-                    <?php unset($_SESSION['error']); ?>
-                <?php endif; ?>
-
-                <form action="../../controllers/AuthController.php" method="POST">
+                <form action="/app/Controllers/AuthController.php" method="POST">
                     <div class="input-group">
                         <input type="email" name="correo" placeholder="Correo electrónico" required>
                     </div>
@@ -62,7 +68,7 @@
             <div id="registerForm" style="display: none;">
                 <h2>Crear Cuenta</h2>
 
-                <form action="../../controllers/AuthController.php" method="POST">
+                <form action="/app/Controllers/AuthController.php" method="POST">
                     <div class="input-group">
                         <input type="text" name="nombre" placeholder="Nombre completo" required>
                     </div>
@@ -89,9 +95,8 @@
         © <?= date("Y"); ?> Cine U XD - Todos los derechos reservados
     </footer>
 
-    <!-- SCRIPTS jeje solo para que no me crashee xd-->
-<script src="/public/js/login.js?v=<?= time(); ?>"></script>
+    <!-- SCRIPTS -->
+    <script src="/public/js/login.js?v=<?= time(); ?>"></script>
 
 </body>
-
 </html>
