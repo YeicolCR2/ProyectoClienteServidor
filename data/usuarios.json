@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nombre": "Administrador",
+        "correo": "admin@cine.com",
+        "password": "$2y$10$geFv0VCue8onN5LloEzrTOKj5R\/zE0erzzPqqaQLzYliW7Hb59Yu.",
+        "rol": "admin"
+    },
+    {
+        "id": 2,
+        "nombre": "Samuel Sandoval",
+        "correo": "samu02@gmail.com",
+        "password": "$2y$10$PjLrlL1x2ZfGrVBVo3ubVO61UdwOp3txJFUZ9x8f1mrh9DExDiRK2",
+        "rol": "cliente"
+    },
+    {
+        "id": 3,
+        "nombre": "Saul",
+        "correo": "sirva23@gmail.com",
+        "password": "$2y$10$3Wt4OOrVKRuAmcRT\/FowXu\/ersg0D5E5zWILWJXDYHSA7YS2bpWeu",
+        "rol": "cliente"
+    }
+]
