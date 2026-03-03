@@ -26,5 +26,12 @@
         "correo": "samu0221voleibol@gmail.com",
         "password": "$2y$10$T9IXcemyisAzdyXX9Db0..vFezzxj4wiRWkF4qf\/CUIvp7AdQKwsK",
         "rol": "cliente"
+    },
+    {
+        "id": 5,
+        "nombre": "Adbeel Espinoza Vanegas",
+        "correo": "adbeelvoleibol@gmail.com",
+        "password": "$2y$10$t3IGzU5\/3XbqpkHkGxoKj.s6ToXmXt2OxGrx1LrRaShu1zQcS4MQO",
+        "rol": "cliente"
     }
 ]
