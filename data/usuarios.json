@@ -26,5 +26,12 @@
         "correo": "samu0221voleibol@gmail.com",
         "password": "$2y$10$T9IXcemyisAzdyXX9Db0..vFezzxj4wiRWkF4qf\/CUIvp7AdQKwsK",
         "rol": "cliente"
+    },
+    {
+        "id": 5,
+        "nombre": "Prueba",
+        "correo": "prueba@prueba.com",
+        "password": "$2y$10$i1TVe.XzFq7M.PKsksygZutXitQv8EVi\/CES7az\/j94Mw\/KaDQMkC",
+        "rol": "cliente"
     }
 ]
