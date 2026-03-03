@@ -71,7 +71,7 @@ if(!isset($_SESSION['usuario'])) {
                     <div class="info-card social-card">
                         <h3>📱 Redes Sociales</h3>
                         <p>Síguenos en Instagram para estar al tanto de estrenos y promociones:</p>
-                        <a href="https://www.instagram.com/" target="_blank" class="instagram-link">
+                        <a href="https://www.instagram.com/cineuxd.oficial/" target="_blank" class="instagram-link">
                             <i class="fab fa-instagram"></i> @cineuxd_cr
                         </a>
                     </div>
@@ -124,7 +124,7 @@ if(!isset($_SESSION['usuario'])) {
             </div>
             <div class="footer-section">
                 <h4>Síguenos</h4>
-                <a href="https://www.instagram.com/" target="_blank" class="social-link">
+                <a href="https://www.instagram.com/cineuxd.oficial/" target="_blank" class="social-link">
                     <i class="fab fa-instagram"></i> Instagram
                 </a>
             </div>
