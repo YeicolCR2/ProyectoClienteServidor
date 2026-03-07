@@ -39,28 +39,29 @@ if(!isset($_SESSION['usuario'])) {
             <h1 class="page-title">🎬 CARTELERA</h1>
             
             <div class="filtros-container">
-                <div class="filtro">
-                    <label>Género:</label>
-                    <select class="filtro-select" id="filtro-genero">
-                        <option value="">Todos</option>
-                        <option value="accion">Acción</option>
-                        <option value="comedia">Comedia</option>
-                        <option value="drama">Drama</option>
-                        <option value="ciencia-ficcion">Ciencia Ficción</option>
-                        <option value="animacion">Animación</option>
-                    </select>
-                </div>
-                <div class="filtro">
-                    <label>Formato:</label>
-                    <select class="filtro-select">
-                        <option>Todos</option>
-                        <option>2D</option>
-                        <option>3D</option>
-                        <option>IMAX</option>
-                        <option>4DX</option>
-                    </select>
-                </div>
-            </div>
+    <div class="filtro">
+        <label for="genero">GÉNERO</label>
+        <select class="filtro-select" id="genero">
+            <option value="todos">Todos</option>
+            <option value="accion">Acción</option>
+            <option value="comedia">Comedia</option>
+            <option value="drama">Drama</option>
+            <option value="ciencia-ficcion">Ciencia Ficción</option>
+            <option value="animacion">Animación</option>
+        </select>
+    </div>
+    
+    <div class="filtro">
+        <label for="formato">FORMATO</label>
+        <select class="filtro-select" id="formato">
+            <option value="todos">Todos</option>
+            <option value="2d">2D</option>
+            <option value="3d">3D</option>
+            <option value="imax">IMAX</option>
+            <option value="4dx">4DX</option>
+        </select>
+    </div>
+</div>
 
             <div class="cartelera-completa">
                 <!-- Spider-Man -->

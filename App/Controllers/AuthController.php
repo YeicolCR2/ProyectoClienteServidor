@@ -23,11 +23,7 @@ if(isset($_POST['login'])) {
             "rol" => $resultado['rol']
         ];
 
-        if($resultado['rol'] === 'admin') {
-            header("Location: /app/views/admin/dashboard.php");
-        } else {
-            header("Location: /app/views/cliente/home.php");
-        }
+        header("Location: /app/views/cliente/home.php");
         exit;
     } else {
         $_SESSION['error'] = "Correo o contraseña incorrectos.";
@@ -59,7 +55,10 @@ if(isset($_POST['register'])) {
     $registro = $user->register($nombre, $correo, $password);
     
     if($registro) {
-        $_SESSION['success'] = "Registro exitoso. Ahora puedes iniciar sesión.";
+        $_SESSION['registro_exitoso'] = [
+            'nombre' => $nombre,
+            'correo' => $correo
+        ];
         header("Location: /app/views/auth/login.php");
     } else {
         $_SESSION['error'] = "Error al registrar. Intenta de nuevo.";
@@ -68,7 +67,6 @@ if(isset($_POST['register'])) {
     exit;
 }
 
-// Si alguien accede directamente sin POST
 header("Location: /app/views/auth/login.php");
 exit;
 ?>
