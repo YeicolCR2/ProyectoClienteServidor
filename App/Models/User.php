@@ -4,6 +4,11 @@ class User {
     private $archivo_usuarios = __DIR__ . '/../../data/usuarios.json';
     
     public function __construct() {
+        // Iniciar sesión
+        if(session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
         // Crear carpeta data si no existe
         $carpeta_data = __DIR__ . '/../../data';
         if (!file_exists($carpeta_data)) {
@@ -22,9 +27,9 @@ class User {
                 ],
                 [
                     'id' => 2,
-                    'nombre' => 'Samuel Sandoval',
-                    'correo' => 'samu02@gmail.com',
-                    'password' => password_hash('Samuel123', PASSWORD_DEFAULT),
+                    'nombre' => 'Saul',
+                    'correo' => 'saul@email.com',
+                    'password' => password_hash('123456', PASSWORD_DEFAULT),
                     'rol' => 'cliente'
                 ]
             ];
@@ -49,7 +54,6 @@ class User {
                 return $usuario;
             }
         }
-        
         return false;
     }
     
@@ -65,14 +69,12 @@ class User {
     }
     
     public function register($nombre, $correo, $password) {
-        // Verificar si el correo ya existe
         if($this->emailExiste($correo)) {
             return false;
         }
         
         $usuarios = $this->getUsuarios();
         
-        // Crear nuevo usuario
         $nuevo_usuario = [
             'id' => count($usuarios) + 1,
             'nombre' => $nombre,
@@ -81,10 +83,7 @@ class User {
             'rol' => 'cliente'
         ];
         
-        // Agregar a la lista
         $usuarios[] = $nuevo_usuario;
-        
-        // Guardar en archivo
         $this->guardarUsuarios($usuarios);
         
         return true;

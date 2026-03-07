@@ -33,5 +33,19 @@
         "correo": "adbeelvoleibol@gmail.com",
         "password": "$2y$10$t3IGzU5\/3XbqpkHkGxoKj.s6ToXmXt2OxGrx1LrRaShu1zQcS4MQO",
         "rol": "cliente"
+    },
+    {
+        "id": 6,
+        "nombre": "Charlie Gonz\u00e1lez Venegas",
+        "correo": "charlie45@gmail.com",
+        "password": "$2y$10$2itOTdQLfS.q7WUuDK26iuOumwK\/hhjWoi\/WcnsHTtf6YRu5nMNAq",
+        "rol": "cliente"
+    },
+    {
+        "id": 7,
+        "nombre": "Adbeel Espinoza Vanegas",
+        "correo": "sirva45@gmail.com",
+        "password": "$2y$10$xJ3.E1.lyx5E0\/A2FHhkKO\/ezK33Vl3CTpg1XuArptA1Ks7hv7Sdu",
+        "rol": "cliente"
     }
 ]
