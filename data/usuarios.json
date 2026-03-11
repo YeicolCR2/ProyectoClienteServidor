@@ -29,6 +29,7 @@
     },
     {
         "id": 5,
+<<<<<<< HEAD
         "nombre": "Adbeel Espinoza Vanegas",
         "correo": "adbeelvoleibol@gmail.com",
         "password": "$2y$10$t3IGzU5\/3XbqpkHkGxoKj.s6ToXmXt2OxGrx1LrRaShu1zQcS4MQO",
@@ -46,6 +47,11 @@
         "nombre": "Adbeel Espinoza Vanegas",
         "correo": "sirva45@gmail.com",
         "password": "$2y$10$xJ3.E1.lyx5E0\/A2FHhkKO\/ezK33Vl3CTpg1XuArptA1Ks7hv7Sdu",
+=======
+        "nombre": "Prueba",
+        "correo": "prueba@prueba.com",
+        "password": "$2y$10$i1TVe.XzFq7M.PKsksygZutXitQv8EVi\/CES7az\/j94Mw\/KaDQMkC",
+>>>>>>> Carlos
         "rol": "cliente"
     }
 ]
