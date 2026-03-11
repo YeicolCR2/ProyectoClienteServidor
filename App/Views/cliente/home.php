@@ -695,7 +695,7 @@ if(!isset($_SESSION['usuario'])) {
                     <div class="carousel-slide">
                         <div class="premiere-card">
                             <div class="premiere-card-inner">
-                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/PIC/Dune.jpg');">
+                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/Public/PIC/Dune.jpeg');">
                                     <div class="premiere-front-content">
                                         <h3>DUNE: PARTE 2</h3>
                                         <p>15 MAR 2026</p>
@@ -718,7 +718,7 @@ if(!isset($_SESSION['usuario'])) {
                     <div class="carousel-slide">
                         <div class="premiere-card">
                             <div class="premiere-card-inner">
-                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/PIC/Avatar3.jpg');">
+                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/Public/PIC/Avatar3.jpeg');">
                                     <div class="premiere-front-content">
                                         <h3>AVATAR 3</h3>
                                         <p>15 DIC 2026</p>
@@ -741,7 +741,7 @@ if(!isset($_SESSION['usuario'])) {
                     <div class="carousel-slide">
                         <div class="premiere-card">
                             <div class="premiere-card-inner">
-                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/PIC/avengers%20secret%20wars.jpg');">
+                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/Public/PIC/avengers%20secret%20wars.jpeg');">
                                     <div class="premiere-front-content">
                                         <h3>AVENGERS: SECRET WARS</h3>
                                         <p>30 ENE 2027</p>
