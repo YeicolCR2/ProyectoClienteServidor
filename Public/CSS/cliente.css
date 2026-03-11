@@ -116,483 +116,7 @@ body {
     background: linear-gradient(90deg, #187bcd, #6bc9da);
 }
 
-/* Hero Slider */
-.hero-slider {
-    height: 500px;
-    position: relative;
-    overflow: hidden;
-}
-
-.slide {
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.slide-content {
-    text-align: center;
-    max-width: 800px;
-    padding: 0 20px;
-}
-
-.slide-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-.slide-content p {
-    font-size: 20px;
-    margin-bottom: 30px;
-    color: rgba(255,255,255,0.9);
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #187bcd, #6bc9da);
-    color: white;
-    padding: 15px 40px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(24,123,205,0.4);
-}
-
-/* Secciones */
-.section-title {
-    font-size: 32px;
-    margin-bottom: 30px;
-    color: #fff;
-    border-left: 5px solid #6bc9da;
-    padding-left: 20px;
-}
-
-.peliculas-section,
-.proximos-section {
-    padding: 60px 0;
-}
-
-.peliculas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.pelicula-card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.3s;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.pelicula-card:hover {
-    transform: translateY(-5px);
-    border-color: #6bc9da;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.pelicula-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-
-.pelicula-info {
-    padding: 20px;
-}
-
-.pelicula-info h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.pelicula-info .genero {
-    color: #6bc9da;
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.pelicula-info .duracion {
-    color: rgba(255,255,255,0.6);
-    font-size: 14px;
-}
-
-.horarios {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 15px 0;
-}
-
-.horarios span {
-    background: rgba(255,255,255,0.1);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.btn-reservar {
-    width: 100%;
-    padding: 12px;
-    background: #187bcd;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.btn-reservar:hover {
-    background: #0f5a9c;
-}
-
-/* Próximos estrenos */
-.proximos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.proximo-card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.proximo-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.proximo-card h3 {
-    padding: 15px 15px 5px;
-}
-
-.proximo-card p {
-    padding: 0 15px 15px;
-    color: #6bc9da;
-}
-
-/* Detalle película */
-.pelicula-detalle {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 40px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    padding: 30px;
-    margin-bottom: 30px;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.pelicula-detalle img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.detalle-meta {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin: 20px 0;
-}
-
-.detalle-meta span {
-    background: rgba(255,255,255,0.1);
-    padding: 8px 20px;
-    border-radius: 25px;
-    font-size: 14px;
-}
-
-.sinopsis {
-    line-height: 1.8;
-    margin: 20px 0;
-    color: rgba(255,255,255,0.8);
-}
-
-.horarios-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 15px;
-}
-
-.horario-btn {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    transition: background 0.3s;
-    text-align: center;
-}
-
-.horario-btn:hover {
-    background: #187bcd;
-}
-
-/* Cines */
-.cines-grid {
-    display: grid;
-    gap: 30px;
-}
-
-.cine-card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.cine-header {
-    background: linear-gradient(135deg, #187bcd, #6bc9da);
-    padding: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cine-header h2 {
-    color: #fff;
-    font-size: 24px;
-}
-
-.cine-ciudad {
-    background: rgba(255,255,255,0.2);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-}
-
-.cine-body {
-    padding: 25px;
-}
-
-.cine-direccion {
-    margin-bottom: 20px;
-}
-
-.salas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.sala-card {
-    background: rgba(255,255,255,0.1);
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.sala-numero {
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-    color: #6bc9da;
-}
-
-.sala-tipo {
-    display: block;
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-.sala-asientos {
-    display: block;
-    font-size: 12px;
-    color: rgba(255,255,255,0.6);
-}
-
-/* Contacto */
-.contacto-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-}
-
-.contacto-info {
-    display: grid;
-    gap: 20px;
-}
-
-.info-card {
-    background: rgba(255,255,255,0.05);
-    padding: 25px;
-    border-radius: 10px;
-    border-left: 4px solid #6bc9da;
-}
-
-.info-card h3 {
-    color: #6bc9da;
-    margin-bottom: 15px;
-}
-
-.info-card p {
-    line-height: 1.8;
-}
-
-.contacto-form {
-    background: rgba(255,255,255,0.05);
-    padding: 30px;
-    border-radius: 15px;
-}
-
-.contacto-form h2 {
-    margin-bottom: 25px;
-    color: #6bc9da;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 5px;
-    color: #fff;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #6bc9da;
-}
-
-/* Reservas */
-.reservas-grid {
-    display: grid;
-    gap: 25px;
-    margin: 30px 0;
-}
-
-.reserva-card {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 30px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    padding: 25px;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.reserva-card.historial {
-    opacity: 0.8;
-}
-
-.reserva-card img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.reserva-info h3 {
-    margin-bottom: 10px;
-}
-
-.reserva-info p {
-    margin: 5px 0;
-    color: rgba(255,255,255,0.8);
-}
-
-.reserva-acciones {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-top: 15px;
-}
-
-.badge {
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.badge.activa {
-    background: #28a745;
-}
-
-.badge.completada {
-    background: rgba(255,255,255,0.2);
-}
-
-.btn-cancelar {
-    background: #ff4b4b;
-    color: #fff;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.btn-cancelar:hover {
-    background: #ff3333;
-}
-
-.mt-4 {
-    margin-top: 40px;
-}
-
-/* Footer */
-.main-footer {
-    background: #000;
-    margin-top: auto;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-.footer-section h4 {
-    color: #6bc9da;
-    margin-bottom: 15px;
-}
-
-.footer-section p {
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.6);
-}
-
-/* Hero Slider */
+/* ================= HERO SLIDER ================= */
 .hero-slider {
     position: relative;
     height: 600px;
@@ -693,7 +217,221 @@ body {
     background: #6bc9da;
 }
 
-/* ================= FILTROS DE CARTELERA - VERSIÓN MEJORADA ================= */
+.btn-primary {
+    background: linear-gradient(135deg, #187bcd, #6bc9da);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(24,123,205,0.4);
+}
+
+/* ================= SECCIONES ================= */
+.section-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #fff;
+    border-left: 5px solid #6bc9da;
+    padding-left: 20px;
+}
+
+.peliculas-section,
+.proximos-section {
+    padding: 60px 0;
+}
+
+/* ================= GRID DE PELÍCULAS ================= */
+.peliculas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.pelicula-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.pelicula-card:hover {
+    transform: translateY(-5px);
+    border-color: #6bc9da;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.pelicula-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.pelicula-info {
+    padding: 20px;
+}
+
+.pelicula-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.pelicula-info .genero {
+    color: #6bc9da;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.pelicula-info .duracion {
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+}
+
+.horarios {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.horarios span {
+    background: rgba(255,255,255,0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-reservar {
+    width: 100%;
+    padding: 12px;
+    background: #187bcd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-reservar:hover {
+    background: #0f5a9c;
+}
+
+/* ================= PRÓXIMOS ESTRENOS ================= */
+.proximos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.proximo-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.proximo-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.proximo-card h3 {
+    padding: 15px 15px 5px;
+}
+
+.proximo-card p {
+    padding: 0 15px 15px;
+    color: #6bc9da;
+}
+
+/* ================= DETALLE PELÍCULA (CARTELERA) ================= */
+.pelicula-detalle {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.pelicula-detalle img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.detalle-meta {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.detalle-meta span {
+    background: rgba(255,255,255,0.1);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+.sinopsis {
+    line-height: 1.8;
+    margin: 20px 0;
+    color: rgba(255,255,255,0.8);
+}
+
+/* ================= BOTONES DE HORARIOS - VERSIÓN CORREGIDA ================= */
+.horarios-buttons {
+    display: flex !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    margin: 20px 0 !important;
+    list-style: none !important;
+}
+
+.horario-btn {
+    background: rgba(255,255,255,0.1) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 12px 25px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    text-align: center !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+    min-width: 80px !important;
+}
+
+.horario-btn:hover {
+    background: #187bcd !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(24,123,205,0.4) !important;
+    border-color: transparent !important;
+}
+
+.detalle-horarios h3 {
+    color: #6bc9da !important;
+    font-size: 20px !important;
+    margin-bottom: 15px !important;
+}
+
+/* ================= FILTROS DE CARTELERA - VERSIÓN ÚNICA ================= */
 .filtros-container {
     background: #1e1e2e;
     padding: 25px 30px;
@@ -726,10 +464,10 @@ body {
 .filtro-select {
     width: 100%;
     padding: 14px 25px;
-    background: #2d2d40;
+    background-color: #2d2d40;
     border: 2px solid #6bc9da;
     border-radius: 12px;
-    color: white;
+    color: #ffffff;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -744,7 +482,7 @@ body {
 }
 
 .filtro-select:hover {
-    background: #3a3a50;
+    background-color: #3a3a50;
     border-color: #6bc9da;
     box-shadow: 0 0 20px rgba(107, 201, 218, 0.5);
     transform: translateY(-2px);
@@ -754,12 +492,12 @@ body {
     outline: none;
     border-color: #6bc9da;
     box-shadow: 0 0 30px rgba(107, 201, 218, 0.7);
-    background: #3a3a50;
+    background-color: #3a3a50;
 }
 
 .filtro-select option {
     background-color: #2d2d40;
-    color: white;
+    color: #ffffff;
     padding: 15px;
     font-size: 16px;
 }
@@ -767,10 +505,254 @@ body {
 .filtro-select option:hover,
 .filtro-select option:checked {
     background-color: #6bc9da !important;
-    color: black !important;
+    color: #000000 !important;
 }
 
-/* Responsive */
+/* ================= CINES ================= */
+.cines-grid {
+    display: grid;
+    gap: 30px;
+}
+
+.cine-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.cine-header {
+    background: linear-gradient(135deg, #187bcd, #6bc9da);
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cine-header h2 {
+    color: #fff;
+    font-size: 24px;
+}
+
+.cine-ciudad {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.cine-body {
+    padding: 25px;
+}
+
+.cine-direccion {
+    margin-bottom: 20px;
+}
+
+.salas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.sala-card {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.sala-numero {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #6bc9da;
+}
+
+.sala-tipo {
+    display: block;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.sala-asientos {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+}
+
+/* ================= CONTACTO ================= */
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.contacto-info {
+    display: grid;
+    gap: 20px;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 4px solid #6bc9da;
+}
+
+.info-card h3 {
+    color: #6bc9da;
+    margin-bottom: 15px;
+}
+
+.info-card p {
+    line-height: 1.8;
+}
+
+.contacto-form {
+    background: rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.contacto-form h2 {
+    margin-bottom: 25px;
+    color: #6bc9da;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 5px;
+    color: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #6bc9da;
+}
+
+/* ================= RESERVAS ================= */
+.reservas-grid {
+    display: grid;
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.reserva-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 30px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.reserva-card.historial {
+    opacity: 0.8;
+}
+
+.reserva-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.reserva-info h3 {
+    margin-bottom: 10px;
+}
+
+.reserva-info p {
+    margin: 5px 0;
+    color: rgba(255,255,255,0.8);
+}
+
+.reserva-acciones {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge.activa {
+    background: #28a745;
+}
+
+.badge.completada {
+    background: rgba(255,255,255,0.2);
+}
+
+.btn-cancelar {
+    background: #ff4b4b;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-cancelar:hover {
+    background: #ff3333;
+}
+
+.mt-4 {
+    margin-top: 40px;
+}
+
+/* ================= FOOTER ================= */
+.main-footer {
+    background: #000;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.footer-section h4 {
+    color: #6bc9da;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+}
+
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -808,218 +790,6 @@ body {
         font-size: 16px;
     }
     
-    .filtros-container {
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-    }
-    
-    .filtro {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        width: 100%;
-    }
-    
-    .filtro-select {
-        max-width: 100%;
-    }
-}
-
-.filtro-select {
-    padding: 10px 20px !important;
-    background-color: #2a2a2a !important;
-    border: 1px solid rgba(255,255,255,0.2) !important;
-    border-radius: 5px !important;
-    color: #fff !important;
-    min-width: 150px !important;
-}
-
-.filtro-select option {
-    background-color: #2a2a2a !important;
-    color: #fff !important;
-}
-
-.filtro-select option {
-    background-color: #ffffff !important;
-    color: black !important;
-}
-
-/* ================= FILTROS DE CARTELERA - VERSIÓN CON COLORES FUERTES ================= */
-.filtros-container {
-    background: #1e1e2e;
-    padding: 25px 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    border: 2px solid #6bc9da;
-    box-shadow: 0 0 25px rgba(107, 201, 218, 0.4);
-}
-
-.filtro {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex: 1 1 280px;
-}
-
-.filtro label {
-    color: #6bc9da;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(107, 201, 218, 0.8);
-    min-width: 100px;
-}
-
-/* ================= FILTROS DE CARTELERA - VERSIÓN CON COLORES FUERTES ================= */
-.filtros-container {
-    background: #1e1e2e;
-    padding: 25px 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    border: 2px solid #6bc9da;
-    box-shadow: 0 0 25px rgba(107, 201, 218, 0.4);
-}
-
-.filtro {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex: 1 1 280px;
-}
-
-.filtro label {
-    color: #6bc9da;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(107, 201, 218, 0.8);
-    min-width: 100px;
-}
-
-.filtro-select {
-    width: 100%;
-    padding: 14px 25px;
-    background: #ffffff !important;  /* Fondo blanco */
-    border: 2px solid #6bc9da;
-    border-radius: 12px;
-    color: #000000 !important;  /* Texto negro */
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236bc9da' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 18px;
-}
-
-/* ================= FILTROS DE CARTELERA - VERSIÓN CON FONDO OSCURO ================= */
-.filtros-container {
-    background: #1e1e2e;
-    padding: 25px 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    border: 2px solid #6bc9da;
-    box-shadow: 0 0 25px rgba(107, 201, 218, 0.4);
-}
-
-.filtro {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex: 1 1 280px;
-}
-
-.filtro label {
-    color: #6bc9da;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(107, 201, 218, 0.8);
-    min-width: 100px;
-}
-
-.filtro-select {
-    width: 100%;
-    padding: 14px 25px;
-    background-color: #2d2d40 !important;
-    border: 2px solid #6bc9da !important;
-    border-radius: 12px !important;
-    color: #ffffff !important;
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236bc9da' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 15px center !important;
-    background-size: 18px !important;
-}
-
-/* Estilo para las opciones del select */
-.filtro-select option {
-    background-color: #2d2d40 !important;
-    color: #ffffff !important;
-    padding: 15px !important;
-    font-size: 16px !important;
-}
-
-/* Para cuando el select está abierto en Chrome/Safari */
-.filtro-select:focus {
-    background-color: #2d2d40 !important;
-    color: #ffffff !important;
-}
-
-.filtro-select:focus option {
-    background-color: #2d2d40 !important;
-    color: #ffffff !important;
-}
-
-/* Hover sobre las opciones */
-.filtro-select option:hover {
-    background-color: #6bc9da !important;
-    color: #000000 !important;
-}
-
-/* Opción seleccionada */
-.filtro-select option:checked {
-    background-color: #6bc9da !important;
-    color: #000000 !important;
-}
-
-/* Para Firefox */
-@-moz-document url-prefix() {
-    .filtro-select {
-        background-color: #2d2d40 !important;
-        color: #ffffff !important;
-    }
-    .filtro-select option {
-        background-color: #2d2d40 !important;
-        color: #ffffff !important;
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
     .filtros-container {
         flex-direction: column;
         gap: 20px;

@@ -681,97 +681,98 @@ if(!isset($_SESSION['usuario'])) {
                 </div>
             </div>
         </section>
-<!-- Próximos Estrenos con Carrusel -->
-<section class="section premieres-section">
-    <div class="container">
-        <h2 class="section-title"><span>PRÓXIMOS ESTRENOS</span></h2>
-        
-        <div class="premieres-carousel">
-            <button class="carousel-btn prev" onclick="moverCarousel(-1)">❮</button>
-            
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <!-- Dune: Parte 2 -->
-                    <div class="carousel-slide">
-                        <div class="premiere-card">
-                            <div class="premiere-card-inner">
-                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/PIC/Dune.jpg');">
-                                    <div class="premiere-front-content">
-                                        <h3>DUNE: PARTE 2</h3>
-                                        <p>15 MAR 2026</p>
+
+        <!-- Próximos Estrenos con Carrusel -->
+        <section class="section premieres-section">
+            <div class="container">
+                <h2 class="section-title"><span>PRÓXIMOS ESTRENOS</span></h2>
+                
+                <div class="premieres-carousel">
+                    <button class="carousel-btn prev" onclick="moverCarousel(-1)">❮</button>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                            <!-- Dune: Parte 2 -->
+                            <div class="carousel-slide">
+                                <div class="premiere-card">
+                                    <div class="premiere-card-inner">
+                                        <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/public/PIC/Dune.jpeg');">
+                                            <div class="premiere-front-content">
+                                                <h3>DUNE: PARTE 2</h3>
+                                                <p>15 MAR 2026</p>
+                                            </div>
+                                        </div>
+                                        <div class="premiere-back">
+                                            <div class="premiere-back-content">
+                                                <h4>DUNE: PARTE 2</h4>
+                                                <p>El despertar de Paul</p>
+                                                <p>Duración: 166 min</p>
+                                                <p>Género: Ciencia Ficción</p>
+                                                <button class="btn-neon" onclick="window.location.href='/app/views/cliente/reserva.php?pelicula=5'">PRE-VENTA</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="premiere-back">
-                                    <div class="premiere-back-content">
-                                        <h4>DUNE: PARTE 2</h4>
-                                        <p>El despertar de Paul</p>
-                                        <p>Duración: 166 min</p>
-                                        <p>Género: Ciencia Ficción</p>
-                                        <button class="btn-neon" onclick="window.location.href='/app/views/cliente/reserva.php?pelicula=5'">PRE-VENTA</button>
+                            </div>
+
+                            <!-- Avatar 3 -->
+                            <div class="carousel-slide">
+                                <div class="premiere-card">
+                                    <div class="premiere-card-inner">
+                                        <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/public/PIC/Avatar3.jpeg');">
+                                            <div class="premiere-front-content">
+                                                <h3>AVATAR 3</h3>
+                                                <p>15 DIC 2026</p>
+                                            </div>
+                                        </div>
+                                        <div class="premiere-back">
+                                            <div class="premiere-back-content">
+                                                <h4>AVATAR 3</h4>
+                                                <p>El regreso a Pandora</p>
+                                                <p>Duración: 162 min</p>
+                                                <p>Género: Ciencia Ficción</p>
+                                                <button class="btn-neon" onclick="window.location.href='/app/views/cliente/reserva.php?pelicula=6'">PRE-VENTA</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Avengers: Secret Wars -->
+                            <div class="carousel-slide">
+                                <div class="premiere-card">
+                                    <div class="premiere-card-inner">
+                                        <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/public/PIC/avengers%20secret%20wars.jpeg');">
+                                            <div class="premiere-front-content">
+                                                <h3>AVENGERS: SECRET WARS</h3>
+                                                <p>30 ENE 2027</p>
+                                            </div>
+                                        </div>
+                                        <div class="premiere-back">
+                                            <div class="premiere-back-content">
+                                                <h4>AVENGERS: SECRET WARS</h4>
+                                                <p>La batalla final</p>
+                                                <p>Duración: 180 min</p>
+                                                <p>Género: Acción</p>
+                                                <button class="btn-neon" onclick="window.location.href='/app/views/cliente/reserva.php?pelicula=7'">PRE-VENTA</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Avatar 3 -->
-                    <div class="carousel-slide">
-                        <div class="premiere-card">
-                            <div class="premiere-card-inner">
-                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/PIC/Avatar3.jpg');">
-                                    <div class="premiere-front-content">
-                                        <h3>AVATAR 3</h3>
-                                        <p>15 DIC 2026</p>
-                                    </div>
-                                </div>
-                                <div class="premiere-back">
-                                    <div class="premiere-back-content">
-                                        <h4>AVATAR 3</h4>
-                                        <p>El regreso a Pandora</p>
-                                        <p>Duración: 162 min</p>
-                                        <p>Género: Ciencia Ficción</p>
-                                        <button class="btn-neon" onclick="window.location.href='/app/views/cliente/reserva.php?pelicula=6'">PRE-VENTA</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Avengers: Secret Wars -->
-                    <div class="carousel-slide">
-                        <div class="premiere-card">
-                            <div class="premiere-card-inner">
-                                <div class="premiere-front" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/PIC/avengers%20secret%20wars.jpg');">
-                                    <div class="premiere-front-content">
-                                        <h3>AVENGERS: SECRET WARS</h3>
-                                        <p>30 ENE 2027</p>
-                                    </div>
-                                </div>
-                                <div class="premiere-back">
-                                    <div class="premiere-back-content">
-                                        <h4>AVENGERS: SECRET WARS</h4>
-                                        <p>La batalla final</p>
-                                        <p>Duración: 180 min</p>
-                                        <p>Género: Acción</p>
-                                        <button class="btn-neon" onclick="window.location.href='/app/views/cliente/reserva.php?pelicula=7'">PRE-VENTA</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    
+                    <button class="carousel-btn next" onclick="moverCarousel(1)">❯</button>
+                    
+                    <div class="carousel-dots">
+                        <span class="carousel-dot active" onclick="irASlideCarousel(0)"></span>
+                        <span class="carousel-dot" onclick="irASlideCarousel(1)"></span>
+                        <span class="carousel-dot" onclick="irASlideCarousel(2)"></span>
                     </div>
                 </div>
             </div>
-            
-            <button class="carousel-btn next" onclick="moverCarousel(1)">❯</button>
-            
-            <div class="carousel-dots">
-                <span class="carousel-dot active" onclick="irASlideCarousel(0)"></span>
-                <span class="carousel-dot" onclick="irASlideCarousel(1)"></span>
-                <span class="carousel-dot" onclick="irASlideCarousel(2)"></span>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
     </main>
 
     <footer class="main-footer">

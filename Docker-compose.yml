@@ -20,12 +20,9 @@ services:
       MYSQL_DATABASE: proyecto_cine
     ports:
       - "3307:3306"
-<<<<<<< HEAD
-=======
     volumes:
       - db_data:/var/lib/mysql
       - ./DB/db.sql:/docker-entrypoint-initdb.d/db.sql
->>>>>>> Carlos
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
