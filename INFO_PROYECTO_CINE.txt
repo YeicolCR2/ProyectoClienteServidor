@@ -1,0 +1,98 @@
+========================================
+PROYECTO CINE - INFORMACIÓN GENERAL
+========================================
+
+🗄 BASE DE DATOS
+----------------------------------------
+Motor: MySQL 8 (Docker)
+Base de datos: proyecto_cine
+Script principal: DB/db.sql
+
+La base se crea automáticamente al ejecutar:
+docker compose up -d
+
+Si se necesita reiniciar completamente la BD:
+docker compose down -v
+docker compose up -d --build
+
+
+🌐 ACCESOS LOCALES
+----------------------------------------
+
+Aplicación Web:
+http://localhost:8082/
+
+Carpeta pública:
+http://localhost:8082/Public/
+
+phpMyAdmin:
+http://localhost:8081
+
+Credenciales MySQL:
+Servidor: db
+Usuario: root
+Contraseña: root
+Base: proyecto_cine
+
+
+🔌 CONEXIÓN PHP
+----------------------------------------
+Archivo:
+Config/database.php
+
+Configuración:
+host = db
+dbname = proyecto_cine
+usuario = root
+password = root
+
+
+📊 ESTRUCTURA PRINCIPAL DE LA BD
+----------------------------------------
+
+Tablas:
+- Rol
+- Usuario
+- Cine
+- Sala
+- Asiento
+- Pelicula
+- Genero
+- Funcion
+- Reserva
+- Reserva_Asiento
+
+Restricciones importantes:
+
+1) No se puede reservar el mismo asiento en la misma función:
+   UNIQUE (id_asiento, id_funcion)
+
+2) No se puede programar la misma sala a la misma hora:
+   UNIQUE (fecha, hora, id_sala)
+
+3) No se puede duplicar un asiento dentro de la misma sala:
+   UNIQUE (fila, numero, id_sala)
+
+
+⚠️ IMPORTANTE PARA RESERVAS (BACKEND)
+----------------------------------------
+Usar transacciones en PHP:
+
+$conn->beginTransaction();
+// Insert en Reserva
+// Insert en Reserva_Asiento
+$conn->commit();
+
+Si ocurre error:
+$conn->rollBack();
+
+
+📌 NOTA
+----------------------------------------
+La base ya incluye:
+- Datos iniciales (seed data)
+- 3 salas
+- 3 películas
+- 4 funciones
+- 150 asientos generados automáticamente
+- Integridad referencial completa
