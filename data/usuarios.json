@@ -33,5 +33,12 @@
         "correo": "prueba@prueba.com",
         "password": "$2y$10$i1TVe.XzFq7M.PKsksygZutXitQv8EVi\/CES7az\/j94Mw\/KaDQMkC",
         "rol": "cliente"
+    },
+    {
+        "id": 6,
+        "nombre": "Alejandro Montero",
+        "correo": "alejandromonteror@gmail.com",
+        "password": "$2y$10$\/xzUwgmaib7WIBIKPcmWZ.RgVFamVjjFFt2IZHFF3iZvzsYW5BvxC",
+        "rol": "cliente"
     }
 ]
