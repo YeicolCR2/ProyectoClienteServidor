@@ -323,3 +323,23 @@
 .switch-text span:hover {
     text-shadow: 0 0 10px #00f3ff;
 }
+/* Estilos responsivos para el modal */
+@media (max-width: 480px) {
+    .modal-container {
+        padding: 30px 20px;
+        width: 95%;
+    }
+    
+    .modal-container h2 {
+        font-size: 24px;
+    }
+    
+    .modal-container p {
+        font-size: 13px;
+    }
+    
+    .btn-reset {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
