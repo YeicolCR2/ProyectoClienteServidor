@@ -68,5 +68,19 @@
         "correo": "samu90@gmail.com",
         "password": "$2y$10$4r3Zy7lGBEuuvXi9qt4aI.pmjusqFnO77V4oxF.5xLceMGZctdCDK",
         "rol": "cliente"
+    },
+    {
+        "id": 11,
+        "nombre": "Juanito Mora Porras",
+        "correo": "santamaria32@gmail.com",
+        "password": "$2y$10$gxmhOuK\/YNo2pLPY7wk9R.91\/5xG.XUBsriZcOR8zIHiwGJxWLhkC",
+        "rol": "cliente"
+    },
+    {
+        "id": 12,
+        "nombre": "Alex",
+        "correo": "alex66@gmail.com",
+        "password": "$2y$10$xk.bM.MtR.oelRUARXixIeYdNTbu1kkqmXpEc1NW5QYfITaUAnMZa",
+        "rol": "cliente"
     }
 ]

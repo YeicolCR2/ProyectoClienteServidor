@@ -71,7 +71,7 @@ if(!isset($_SESSION['usuario'])) {
                     <div class="info-card social-card">
                         <h3>📱 Redes Sociales</h3>
                         <p>Síguenos en Instagram para estar al tanto de estrenos y promociones:</p>
-                        <a href="https://www.instagram.com/cineuxd.oficial/" target="_blank" class="instagram-link">
+                        <a href="https://www.instagram.com/" target="_blank" class="instagram-link">
                             <i class="fab fa-instagram"></i> @cineuxd_cr
                         </a>
                     </div>
@@ -88,11 +88,13 @@ if(!isset($_SESSION['usuario'])) {
                         </div>
                         <div class="form-group">
                             <select id="asunto" name="asunto" required>
-                                <option value="">Selecciona un asunto</option>
-                                <option value="consulta">Consulta general</option>
-                                <option value="reserva">Problema con reserva</option>
-                                <option value="sugerencia">Sugerencia</option>
-                                <option value="reclamo">Reclamo</option>
+                                <option value="" disabled selected>Selecciona un asunto</option>
+                                <option value="consulta">📝 Consulta general</option>
+                                <option value="reserva">🎟️ Problema con reserva</option>
+                                <option value="sugerencia">💡 Sugerencia</option>
+                                <option value="reclamo">⚠️ Reclamo</option>
+                                <option value="promociones">🎁 Promociones</option>
+                                <option value="trabajo">💼 Trabaja con nosotros</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -124,7 +126,7 @@ if(!isset($_SESSION['usuario'])) {
             </div>
             <div class="footer-section">
                 <h4>Síguenos</h4>
-                <a href="https://www.instagram.com/cineuxd.oficial/" target="_blank" class="social-link">
+                <a href="https://www.instagram.com/" target="_blank" class="social-link">
                     <i class="fab fa-instagram"></i> Instagram
                 </a>
             </div>
@@ -140,27 +142,44 @@ if(!isset($_SESSION['usuario'])) {
         
         const nombre = document.getElementById('nombre').value;
         const correo = document.getElementById('correo').value;
-        const asunto = document.getElementById('asunto').value;
+        const asuntoSelect = document.getElementById('asunto');
+        const asuntoTexto = asuntoSelect.options[asuntoSelect.selectedIndex].text;
+        const asuntoValor = asuntoSelect.value;
         const mensaje = document.getElementById('mensaje').value;
+        
+        // Mapear asuntos a iconos
+        const iconos = {
+            'consulta': '📝',
+            'reserva': '🎟️',
+            'sugerencia': '💡',
+            'reclamo': '⚠️',
+            'promociones': '🎁',
+            'trabajo': '💼'
+        };
+        
+        const icono = iconos[asuntoValor] || '📧';
         
         // Sweet Alert de éxito
         Swal.fire({
             icon: 'success',
             title: '¡Mensaje enviado!',
-            text: 'Gracias por contactarnos, te responderemos pronto.',
+            html: `<p>Gracias <strong>${nombre}</strong>, te responderemos pronto.</p>`,
             confirmButtonColor: '#6bc9da',
-            confirmButtonText: 'Ver detalles'
+            confirmButtonText: 'Ver detalles del mensaje'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Mostrar ventana emergente con los datos
                 Swal.fire({
-                    title: 'Datos del mensaje',
+                    title: '📋 Detalles del mensaje',
                     html: `
-                        <div style="text-align: left;">
-                            <p><strong>Nombre:</strong> ${nombre}</p>
-                            <p><strong>Correo:</strong> ${correo}</p>
-                            <p><strong>Asunto:</strong> ${asunto}</p>
-                            <p><strong>Mensaje:</strong> ${mensaje}</p>
+                        <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                            <p><strong><i class="fas fa-user"></i> Nombre:</strong> ${nombre}</p>
+                            <p><strong><i class="fas fa-envelope"></i> Correo:</strong> ${correo}</p>
+                            <p><strong><i class="fas fa-tag"></i> Asunto:</strong> ${icono} ${asuntoTexto}</p>
+                            <p><strong><i class="fas fa-comment"></i> Mensaje:</strong></p>
+                            <p style="background: #fff; padding: 10px; border-radius: 5px; border-left: 3px solid #6bc9da;">${mensaje}</p>
+                            <hr style="margin: 10px 0;">
+                            <p style="color: #6bc9da; font-size: 12px;"><i class="fas fa-clock"></i> Enviado: ${new Date().toLocaleString()}</p>
                         </div>
                     `,
                     icon: 'info',
@@ -172,6 +191,8 @@ if(!isset($_SESSION['usuario'])) {
         
         // Limpiar formulario
         this.reset();
+        // Resetear select al placeholder
+        document.getElementById('asunto').value = '';
     });
     </script>
 
@@ -207,6 +228,28 @@ if(!isset($_SESSION['usuario'])) {
     .social-card {
         background: linear-gradient(135deg, rgba(131,58,180,0.1), rgba(253,29,29,0.1), rgba(247,119,55,0.1));
         border-left: 4px solid #833ab4;
+    }
+    
+    .form-group select {
+        width: 100%;
+        padding: 12px 15px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .form-group select option {
+        background: #1a1a1a;
+        color: #fff;
+        padding: 10px;
+    }
+    
+    .form-group select:focus {
+        outline: none;
+        border-color: #6bc9da;
     }
     </style>
 </body>
