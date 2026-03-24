@@ -1,7 +1,14 @@
+
+# ProyectoClienteServidor
+Este repositorio es para el curso de programacion cliente/servidor para el proyecto
+
+Objetivos
+=======
 # ProyectoClienteServidor
 Este repositorio es para el curso de Ambiente Web cliente/servidor para el proyecto
 
-Samuel Objetivos
+Yeicol Objetivos
+
 
 Hacer un login:
 
@@ -15,4 +22,3 @@ Con roles (admin / cliente)
 Con redirección correcta
 
 Con sesiones seguras
----------
