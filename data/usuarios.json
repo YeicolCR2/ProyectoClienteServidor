@@ -82,5 +82,12 @@
         "correo": "alex66@gmail.com",
         "password": "$2y$10$xk.bM.MtR.oelRUARXixIeYdNTbu1kkqmXpEc1NW5QYfITaUAnMZa",
         "rol": "cliente"
+    },
+    {
+        "id": 13,
+        "nombre": "Alejandro Montero",
+        "correo": "montero34@gmail.com",
+        "password": "$2y$10$T2a6KrLY3VBpzU0SrMsbOe062s8BzEa7MKrnNofRmn8Z.GecQTbmO",
+        "rol": "cliente"
     }
 ]
