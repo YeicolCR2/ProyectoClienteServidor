@@ -4,7 +4,6 @@ require_once __DIR__ . '/../Models/Reserva.php';
 
 class ReservaController {
 
-    // 🔥 GUARDAR RESERVA SIMPLE (compatibilidad)
     public function guardar() {
 
         if (session_status() === PHP_SESSION_NONE) {
@@ -33,7 +32,6 @@ class ReservaController {
         }
     }
 
-    // 🔥 MOSTRAR ASIENTOS
     public function seleccionarAsiento() {
 
         if (session_status() === PHP_SESSION_NONE) {
@@ -59,7 +57,6 @@ class ReservaController {
         require __DIR__ . '/../Views/cliente/asientos.php';
     }
 
-    // 🔥 GUARDAR RESERVA CON ASIENTO
     public function guardarConAsiento() {
 
         if (session_status() === PHP_SESSION_NONE) {
@@ -89,7 +86,6 @@ class ReservaController {
         }
     }
 
-    // 🔥 LISTAR RESERVAS
     public function index() {
 
         if (session_status() === PHP_SESSION_NONE) {
@@ -109,7 +105,6 @@ class ReservaController {
         require __DIR__ . '/../Views/cliente/mis-reservas.php';
     }
 
-    // 🔥 CANCELAR RESERVA (LO QUE TE FALTABA)
     public function cancelar() {
 
         if (session_status() === PHP_SESSION_NONE) {
