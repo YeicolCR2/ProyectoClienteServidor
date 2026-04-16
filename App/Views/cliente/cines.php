@@ -3,10 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['usuario'])) {
-    header("Location: /public/index.php?route=login");
-    exit;
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
