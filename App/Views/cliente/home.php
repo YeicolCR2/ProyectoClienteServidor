@@ -14,9 +14,7 @@ if (!isset($_SESSION['usuario'])) {
 <head>
     <meta charset="UTF-8">
     <title>Inicio - Cine U XD</title>
-
-    <link rel="stylesheet" href="/public/css/base.css">
-    <link rel="stylesheet" href="/public/css/cliente.css">
+    <link rel="stylesheet" href="/public/css/cliente.css?v=2">
 </head>
 
 <body>
@@ -35,16 +33,15 @@ if (!isset($_SESSION['usuario'])) {
                     <li><a href="/public/index.php?route=cines">CINES</a></li>
                     <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
                     <li><a href="/public/index.php?route=reservas">MIS RESERVAS</a></li>
-                    <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 1): ?>
-                        <li>
-                            <a href="/public/index.php?route=admin">ADMIN</a>
-                        </li>
+
+                    <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] == 1): ?>
+                        <li><a href="/public/index.php?route=admin">ADMIN</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
 
             <div class="user-menu">
-                <span>👤 <?php echo $_SESSION['usuario']['nombre']; ?></span>
+                <span class="user-pill"><?php echo $_SESSION['usuario']['nombre']; ?></span>
                 <a href="/public/index.php?route=logout" class="btn-logout">
                     CERRAR SESIÓN
                 </a>
@@ -53,11 +50,32 @@ if (!isset($_SESSION['usuario'])) {
         </div>
     </header>
 
-    <main style="padding:40px; text-align:center;">
-        <h1>Bienvenido al sistema de cine 🎬</h1>
-        <p>Usa el menú para navegar</p>
+    <main class="page-container">
+        <section class="page-intro">
+            <h1>🎬 BIENVENIDO A CINE U XD</h1>
+            <p>Disfruta de la cartelera, consulta cines y administra tus reservas.</p>
+        </section>
+
+        <section class="cards-grid">
+            <div class="mini-card">
+                <h2>Cartelera</h2>
+                <p>Consulta las películas disponibles actualmente en el sistema.</p>
+                <a href="/public/index.php?route=cartelera">Ver cartelera</a>
+            </div>
+
+            <div class="mini-card">
+                <h2>Cines</h2>
+                <p>Revisa los cines registrados y sus ubicaciones disponibles.</p>
+                <a href="/public/index.php?route=cines">Ver cines</a>
+            </div>
+
+            <div class="mini-card">
+                <h2>Mis Reservas</h2>
+                <p>Consulta el historial y estado de tus reservas realizadas.</p>
+                <a href="/public/index.php?route=reservas">Ver reservas</a>
+            </div>
+        </section>
     </main>
 
 </body>
-
 </html>

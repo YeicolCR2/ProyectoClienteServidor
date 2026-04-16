@@ -1,32 +1,49 @@
-<?php if (!isset($_SESSION)) session_start(); ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: /public/index.php?route=login");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Cines | Cine U XD</title>
-    <link rel="stylesheet" href="/public/css/cines.css">
+    <link rel="stylesheet" href="/public/css/cines.css?v=2">
 </head>
 <body>
 
     <header class="main-header">
-        <nav class="navbar">
-            <div class="logo">CINE <span>U XD</span></div>
+        <div class="header-container">
 
-            <ul class="nav-links">
-                <li><a href="/public/index.php?route=home">INICIO</a></li>
-                <li><a href="/public/index.php?route=cartelera">CARTELERA</a></li>
-                <li><a href="/public/index.php?route=cines" class="active">CINES</a></li>
-                <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
-                <li><a href="/public/index.php?route=reservas">MIS RESERVAS</a></li>
-            </ul>
+            <a href="/public/index.php?route=home" class="logo">
+                CINE U XD
+            </a>
 
-            <div class="nav-actions">
-                <?php if (isset($_SESSION['usuario'])): ?>
-                    <div class="user-pill"><?php echo $_SESSION['usuario']['nombre']; ?></div>
-                    <a href="/public/index.php?route=logout" class="logout-btn">CERRAR SESIÓN</a>
-                <?php endif; ?>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/public/index.php?route=home">INICIO</a></li>
+                    <li><a href="/public/index.php?route=cartelera">CARTELERA</a></li>
+                    <li><a href="/public/index.php?route=cines" class="active">CINES</a></li>
+                    <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
+                    <li><a href="/public/index.php?route=reservas">MIS RESERVAS</a></li>
+
+                    <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] == 1): ?>
+                        <li><a href="/public/index.php?route=admin">ADMIN</a></li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+
+            <div class="user-menu">
+                <span class="user-pill"><?php echo $_SESSION['usuario']['nombre']; ?></span>
+                <a href="/public/index.php?route=logout" class="btn-logout">CERRAR SESIÓN</a>
             </div>
-        </nav>
+
+        </div>
     </header>
 
     <main class="cines-container">

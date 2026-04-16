@@ -7,135 +7,180 @@
 body {
     font-family: Arial, sans-serif;
     background:
-        radial-gradient(circle at top, rgba(0, 255, 255, 0.08), transparent 25%),
-        radial-gradient(circle at right, rgba(162, 0, 255, 0.08), transparent 20%),
-        #050816;
+        radial-gradient(circle at top, rgba(0, 255, 255, 0.07), transparent 20%),
+        radial-gradient(circle at right, rgba(162, 0, 255, 0.06), transparent 18%),
+        #03081b;
     color: white;
     min-height: 100vh;
 }
 
+/* HEADER IGUAL AL HOME */
 .main-header {
     width: 100%;
-    padding: 25px 60px;
+    padding: 22px 50px;
     border-bottom: 2px solid #00eaff;
-    box-shadow: 0 0 18px rgba(0, 234, 255, 0.35);
-    background: rgba(0, 0, 0, 0.65);
+    box-shadow: 0 0 18px rgba(0, 234, 255, 0.28);
+    background: rgba(0, 0, 0, 0.70);
 }
 
-.navbar {
+.header-container {
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .logo {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     font-weight: bold;
-    color: #38d9ff;
+    text-decoration: none;
+    color: #29d8ff;
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .logo span {
     color: #7a3cff;
 }
 
-.nav-links {
+.main-nav ul {
     list-style: none;
     display: flex;
     gap: 30px;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-links a {
-    color: #ddd;
+.main-nav ul li a {
+    color: #e5e5e5;
     text-decoration: none;
     font-weight: bold;
+    font-size: 0.95rem;
     letter-spacing: 1px;
-}
-
-.nav-links a.active,
-.nav-links a:hover {
-    color: #00eaff;
-    border-bottom: 2px solid #7a3cff;
+    transition: 0.3s ease;
     padding-bottom: 6px;
 }
 
-.nav-actions {
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: #00eaff;
+    border-bottom: 2px solid #7a3cff;
+}
+
+.user-menu {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .user-pill {
-    padding: 12px 22px;
+    padding: 10px 20px;
     border: 1px solid #00eaff;
     border-radius: 30px;
-    box-shadow: 0 0 15px rgba(0, 234, 255, 0.35);
-    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 0 12px rgba(0, 234, 255, 0.25);
 }
 
-.logout-btn {
+.btn-logout {
     text-decoration: none;
-    padding: 12px 20px;
+    padding: 11px 18px;
     border-radius: 10px;
     border: 1px solid #ff00c8;
     color: #ff00c8;
     font-weight: bold;
+    transition: 0.3s ease;
 }
 
-.logout-btn:hover {
+.btn-logout:hover {
     background: #ff00c8;
     color: #fff;
-    box-shadow: 0 0 15px rgba(255, 0, 200, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 200, 0.35);
 }
 
+/* CONTENIDO */
 .cines-container {
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 0 20px 40px;
+    max-width: 980px;
+    margin: 45px auto 0;
+    padding: 0 20px 50px;
 }
 
 .page-title {
     text-align: center;
-    font-size: 2.3rem;
+    font-size: 2rem;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .page-subtitle {
     text-align: center;
     color: #b8c1ec;
-    margin-bottom: 40px;
+    font-size: 1rem;
+    margin-bottom: 35px;
 }
 
 .cines-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
 .cine-card {
-    background: rgba(0, 0, 0, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 18px;
-    padding: 24px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.50);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 16px;
+    padding: 22px 20px;
     transition: 0.3s ease;
 }
 
 .cine-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 18px rgba(122, 60, 255, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 0 16px rgba(122, 60, 255, 0.18);
 }
 
 .cine-card h2 {
-    margin-bottom: 15px;
-    color: #ffffff;
+    font-size: 1.6rem;
+    margin-bottom: 14px;
     border-left: 4px solid #00eaff;
     padding-left: 10px;
+    color: #ffffff;
 }
 
 .cine-card p {
-    margin-bottom: 10px;
     color: #f1f1f1;
-    line-height: 1.5;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    font-size: 0.97rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .user-menu {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 1.7rem;
+    }
 }
