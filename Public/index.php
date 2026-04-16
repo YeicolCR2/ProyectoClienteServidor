@@ -121,6 +121,41 @@ switch ($route) {
         $controller = new AdminController();
         $controller->guardarAsiento();
         break;
+    case 'eliminar-cine':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->eliminarCine();
+        break;
+
+    case 'eliminar-sala':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->eliminarSala();
+        break;
+
+    case 'eliminar-pelicula':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->eliminarPelicula();
+        break;
+
+    case 'eliminar-genero':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->eliminarGenero();
+        break;
+
+    case 'eliminar-funcion':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->eliminarFuncion();
+        break;
+
+    case 'eliminar-asiento':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->eliminarAsiento();
+        break;
 
     // 🔴 DEFAULT
     default:

@@ -141,4 +141,144 @@ class Admin
         $stmt->bindParam(':id_sala', $id_sala);
         return $stmt->execute();
     }
+    public function deleteCine($id)
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            // Eliminar asientos de salas que pertenecen al cine
+            $sqlAsientos = "DELETE a
+                        FROM Asiento a
+                        INNER JOIN Sala s ON a.id_sala = s.id_sala
+                        WHERE s.id_cine = :id";
+            $stmtAsientos = $this->conn->prepare($sqlAsientos);
+            $stmtAsientos->bindParam(':id', $id);
+            $stmtAsientos->execute();
+
+            // Eliminar funciones de salas que pertenecen al cine
+            $sqlFunciones = "DELETE f
+                         FROM Funcion f
+                         INNER JOIN Sala s ON f.id_sala = s.id_sala
+                         WHERE s.id_cine = :id";
+            $stmtFunciones = $this->conn->prepare($sqlFunciones);
+            $stmtFunciones->bindParam(':id', $id);
+            $stmtFunciones->execute();
+
+            // Eliminar salas del cine
+            $sqlSalas = "DELETE FROM Sala WHERE id_cine = :id";
+            $stmtSalas = $this->conn->prepare($sqlSalas);
+            $stmtSalas->bindParam(':id', $id);
+            $stmtSalas->execute();
+
+            // Eliminar cine
+            $sqlCine = "DELETE FROM Cine WHERE id_cine = :id";
+            $stmtCine = $this->conn->prepare($sqlCine);
+            $stmtCine->bindParam(':id', $id);
+            $stmtCine->execute();
+
+            $this->conn->commit();
+            return true;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return false;
+        }
+    }
+
+    public function deleteSala($id)
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            // Eliminar asientos de la sala
+            $sqlAsientos = "DELETE FROM Asiento WHERE id_sala = :id";
+            $stmtAsientos = $this->conn->prepare($sqlAsientos);
+            $stmtAsientos->bindParam(':id', $id);
+            $stmtAsientos->execute();
+
+            // Eliminar funciones de la sala
+            $sqlFunciones = "DELETE FROM Funcion WHERE id_sala = :id";
+            $stmtFunciones = $this->conn->prepare($sqlFunciones);
+            $stmtFunciones->bindParam(':id', $id);
+            $stmtFunciones->execute();
+
+            // Eliminar sala
+            $sqlSala = "DELETE FROM Sala WHERE id_sala = :id";
+            $stmtSala = $this->conn->prepare($sqlSala);
+            $stmtSala->bindParam(':id', $id);
+            $stmtSala->execute();
+
+            $this->conn->commit();
+            return true;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return false;
+        }
+    }
+
+    public function deletePelicula($id)
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            // Eliminar géneros de la película
+            $sqlGeneros = "DELETE FROM Genero WHERE id_pelicula = :id";
+            $stmtGeneros = $this->conn->prepare($sqlGeneros);
+            $stmtGeneros->bindParam(':id', $id);
+            $stmtGeneros->execute();
+
+            // Eliminar funciones de la película
+            $sqlFunciones = "DELETE FROM Funcion WHERE id_pelicula = :id";
+            $stmtFunciones = $this->conn->prepare($sqlFunciones);
+            $stmtFunciones->bindParam(':id', $id);
+            $stmtFunciones->execute();
+
+            // Eliminar película
+            $sqlPelicula = "DELETE FROM Pelicula WHERE id_pelicula = :id";
+            $stmtPelicula = $this->conn->prepare($sqlPelicula);
+            $stmtPelicula->bindParam(':id', $id);
+            $stmtPelicula->execute();
+
+            $this->conn->commit();
+            return true;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return false;
+        }
+    }
+
+    public function deleteGenero($id)
+    {
+        try {
+            $sql = "DELETE FROM Genero WHERE id_genero = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function deleteFuncion($id)
+    {
+        try {
+            $sql = "DELETE FROM Funcion WHERE id_funcion = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function deleteAsiento($id)
+    {
+        try {
+            $sql = "DELETE FROM Asiento WHERE id_asiento = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
