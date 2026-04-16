@@ -9,6 +9,6 @@ class PeliculaController {
         $movieModel = new Movie();
         $peliculas = $movieModel->obtenerPeliculas();
 
-        require __DIR__ . "/../Views/cartelera.php";
+        require __DIR__ . "/../Views/cliente/cartelera.php";
     }
 }

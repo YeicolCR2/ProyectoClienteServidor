@@ -47,4 +47,9 @@ switch ($route) {
     default:
         echo "<h1>404 - Página no encontrada</h1>";
         break;
+
+    case 'reserva':
+    require_once __DIR__ . '/../App/Controllers/ReservaController.php';
+    break;
 }
+

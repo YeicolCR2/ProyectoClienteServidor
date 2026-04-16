@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['usuario'])) {
     header("Location: /public/index.php?route=login");
@@ -12,38 +14,77 @@ if (!isset($_SESSION['usuario'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Cartelera</title>
+    <title>Cartelera - Cine U XD</title>
+
+    <!-- Puedes mantener tus estilos si ya los usabas -->
+    <link rel="stylesheet" href="/public/css/base.css">
+    <link rel="stylesheet" href="/public/css/cliente.css">
+    <link rel="stylesheet" href="/public/css/cartelera.css">
 </head>
 
 <body>
 
-<h1>CARTELERA</h1>
+<header class="main-header">
+    <div class="header-container">
 
-<?php if (!empty($peliculas)): ?>
+        <a href="/public/index.php?route=home" class="logo">
+            CINE U XD
+        </a>
 
-    <?php foreach ($peliculas as $pelicula): ?>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/public/index.php?route=home">INICIO</a></li>
+                <li><a href="/public/index.php?route=cartelera" class="active">CARTELERA</a></li>
+                <li><a href="/public/index.php?route=cines">CINES</a></li>
+                <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
+                <li><a href="/public/index.php?route=reservas">MIS RESERVAS</a></li>
+            </ul>
+        </nav>
 
-        <div style="border:1px solid #ccc; margin:10px; padding:10px;">
-
-            <h2><?php echo $pelicula['titulo']; ?></h2>
-
-            <p><strong>Duración:</strong> <?php echo $pelicula['duracion']; ?> min</p>
-
-            <p><strong>Descripción:</strong> <?php echo $pelicula['descripcion']; ?></p>
-
-            <p><strong>Estreno:</strong> <?php echo $pelicula['fecha_estreno']; ?></p>
-
-            <a href="#">Reservar</a>
-
+        <div class="user-menu">
+            <span>👤 <?php echo $_SESSION['usuario']['nombre']; ?></span>
+            <a href="/public/index.php?route=logout" class="btn-logout">CERRAR SESIÓN</a>
         </div>
 
-    <?php endforeach; ?>
+    </div>
+</header>
 
-<?php else: ?>
+<main style="padding:40px;">
 
-    <p>No hay películas en cartelera</p>
+    <h1 style="text-align:center;">🎬 CARTELERA</h1>
 
-<?php endif; ?>
+    <?php if (!empty($peliculas)): ?>
+
+        <?php foreach ($peliculas as $pelicula): ?>
+
+            <div style="border:1px solid #ccc; margin:20px auto; padding:20px; max-width:600px; border-radius:10px;">
+
+                <h2><?php echo $pelicula['titulo']; ?></h2>
+
+                <p><strong>Duración:</strong> <?php echo $pelicula['duracion']; ?> min</p>
+
+                <p><strong>Descripción:</strong> <?php echo $pelicula['descripcion']; ?></p>
+
+                <p><strong>Estreno:</strong> <?php echo $pelicula['fecha_estreno']; ?></p>
+
+                <div style="margin-top:10px;">
+                    <a href="/public/index.php?route=reserva&id=<?php echo $pelicula['id_pelicula']; ?>"
+                       style="background:#6c5ce7; color:white; padding:10px 15px; text-decoration:none; border-radius:5px;">
+                        Reservar
+                    </a>
+                </div>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    <?php else: ?>
+
+        <p style="text-align:center;">No hay películas en cartelera</p>
+
+    <?php endif; ?>
+
+</main>
 
 </body>
 </html>
