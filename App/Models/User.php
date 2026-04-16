@@ -1,9 +1,13 @@
 <?php
+
+require_once dirname(__DIR__) . '/../Config/database.php';
+
 class User {
-    
-    private $archivo_usuarios = __DIR__ . '/../../data/usuarios.json';
-    
+
+    private $conn;
+
     public function __construct() {
+<<<<<<< HEAD
         if(session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -50,11 +54,30 @@ class User {
             if($usuario['correo'] === $correo && password_verify($password, $usuario['password'])) {
                 return $usuario;
             }
+=======
+        $database = new Database();
+        $this->conn = $database->conectar();
+    }
+
+    public function login($correo, $password) {
+
+        $sql = "SELECT * FROM Usuario WHERE correo = :correo AND estado = 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->execute();
+
+        $usuario = $stmt->fetch();
+
+        if ($usuario && password_verify($password, $usuario['password'])) {
+            return $usuario;
+>>>>>>> Alejandro
         }
+
         return false;
     }
-    
+
     public function emailExiste($correo) {
+<<<<<<< HEAD
         $usuarios = $this->getUsuarios();
         
         if (empty($usuarios) || !is_array($usuarios)) {
@@ -67,9 +90,19 @@ class User {
             }
         }
         return false;
+=======
+
+        $sql = "SELECT * FROM Usuario WHERE correo = :correo";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->execute();
+
+        return $stmt->fetch() ? true : false;
+>>>>>>> Alejandro
     }
-    
+
     public function register($nombre, $correo, $password) {
+<<<<<<< HEAD
         if($this->emailExiste($correo)) {
             return false;
         }
@@ -100,6 +133,20 @@ class User {
         $this->guardarUsuarios($usuarios);
         
         return true;
+=======
+
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO Usuario (nombre, correo, password, estado, fecha_registro, id_rol)
+                VALUES (:nombre, :correo, :password, 1, NOW(), 2)";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->bindParam(':password', $passwordHash);
+
+        return $stmt->execute();
+>>>>>>> Alejandro
     }
 }
-?>

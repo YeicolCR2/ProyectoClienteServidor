@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../Config/database.php";
+require_once dirname(__DIR__) . '/../Config/database.php';
 
 class Movie {
 
@@ -13,10 +13,15 @@ class Movie {
 
     public function obtenerPeliculas() {
 
-        $sql = "SELECT * FROM Pelicula WHERE estado = 'cartelera'";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
+        try {
+            $sql = "SELECT * FROM Pelicula WHERE estado = 'cartelera'";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
 
-        return $stmt->fetchAll();
+            return $stmt->fetchAll();
+
+        } catch (PDOException $e) {
+            die("❌ Error en consulta: " . $e->getMessage());
+        }
     }
 }

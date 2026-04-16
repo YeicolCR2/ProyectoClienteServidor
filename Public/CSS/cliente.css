@@ -1,121 +1,105 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    background-color: #1a1a1a;
-    color: #fff;
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at top, rgba(0, 255, 255, 0.07), transparent 20%),
+        radial-gradient(circle at right, rgba(162, 0, 255, 0.06), transparent 18%),
+        #03081b;
+    color: white;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    margin: 0;
 }
 
 .main-header {
-    background: linear-gradient(to bottom, #000, #1a1a1a);
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    width: 100%;
+    padding: 22px 50px;
+    border-bottom: 2px solid #00eaff;
+    box-shadow: 0 0 18px rgba(0, 234, 255, 0.28);
+    background: rgba(0, 0, 0, 0.70);
 }
 
 .header-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .logo {
-    color: #fff;
-    font-size: 28px;
-    font-weight: 800;
+    font-size: 2.1rem;
+    font-weight: bold;
     text-decoration: none;
-    transition: color 0.3s;
-}
-
-.logo:hover {
-    color: #6bc9da;
+    color: #29d8ff;
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .main-nav ul {
-    display: flex;
     list-style: none;
+    display: flex;
     gap: 30px;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
 
-.main-nav a {
-    color: rgba(255,255,255,0.8);
+.main-nav ul li a {
+    color: #e5e5e5;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-    padding: 10px 0;
+    font-weight: bold;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+    padding-bottom: 6px;
 }
 
-.main-nav a:hover,
-.main-nav a.active {
-    color: #6bc9da;
-    border-bottom: 2px solid #6bc9da;
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: #00eaff;
+    border-bottom: 2px solid #7a3cff;
 }
 
 .user-menu {
     display: flex;
+    gap: 12px;
     align-items: center;
-    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.user-menu span {
-    background: rgba(107,201,218,0.1);
-    padding: 8px 15px;
-    border-radius: 20px;
-    color: #6bc9da;
-    font-weight: 500;
+.user-pill {
+    padding: 10px 20px;
+    border: 1px solid #00eaff;
+    border-radius: 30px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 0 12px rgba(0, 234, 255, 0.25);
 }
 
 .btn-logout {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 5px;
     text-decoration: none;
-    transition: background 0.3s;
-    border: 1px solid rgba(255,255,255,0.1);
+    padding: 11px 18px;
+    border-radius: 10px;
+    border: 1px solid #ff00c8;
+    color: #ff00c8;
+    font-weight: bold;
+    transition: 0.3s ease;
 }
 
 .btn-logout:hover {
-    background: #ff4b4b;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-.page-title {
-    font-size: 42px;
-    margin: 40px 0;
-    text-align: center;
+    background: #ff00c8;
     color: #fff;
-    position: relative;
+    box-shadow: 0 0 15px rgba(255, 0, 200, 0.35);
 }
 
-.page-title::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, #187bcd, #6bc9da);
+.page-container {
+    max-width: 980px;
+    margin: 45px auto 0;
+    padding: 0 20px 50px;
 }
 
+<<<<<<< HEAD
 /* ================= HERO SLIDER ================= */
 .hero-slider {
     position: relative;
@@ -806,4 +790,63 @@ body {
     .filtro-select {
         max-width: 100%;
     }
+=======
+.page-intro {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.page-intro h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.page-intro p {
+    color: #b8c1ec;
+    font-size: 1rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.mini-card {
+    background: rgba(0, 0, 0, 0.50);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 16px;
+    padding: 22px 20px;
+    transition: 0.3s ease;
+}
+
+.mini-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 16px rgba(122, 60, 255, 0.18);
+}
+
+.mini-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+    border-left: 4px solid #00eaff;
+    padding-left: 10px;
+}
+
+.mini-card p {
+    color: #f1f1f1;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-size: 0.97rem;
+}
+
+.mini-card a {
+    text-decoration: none;
+    color: #7a7dff;
+    font-weight: bold;
+}
+
+.mini-card a:hover {
+    color: #00eaff;
+>>>>>>> Alejandro
 }

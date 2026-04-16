@@ -1,21 +1,22 @@
 <?php
 session_start();
-if(!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['usuario'])) {
     header("Location: /app/views/auth/login.php");
     exit;
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Cine U XD</title>
     <link rel="stylesheet" href="/public/css/base.css">
-    <link rel="stylesheet" href="/public/css/cliente.css">
+    <link rel="stylesheet" href="/public/css/contacto.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
     <header class="main-header">
         <div class="header-container">
@@ -30,7 +31,7 @@ if(!isset($_SESSION['usuario'])) {
                 </ul>
             </nav>
             <div class="user-menu">
-                <span>👤 <?php echo $_SESSION['usuario']['nombre']; ?></span>
+                <span>👤 <?php echo htmlspecialchars($_SESSION['usuario']['nombre']); ?></span>
                 <a href="/app/Controllers/LogoutController.php" class="btn-logout">Cerrar Sesión</a>
             </div>
         </div>
@@ -39,33 +40,34 @@ if(!isset($_SESSION['usuario'])) {
     <main>
         <div class="container">
             <h1 class="page-title">📞 CONTACTO</h1>
-            
+
             <div class="contacto-grid">
+                <!-- Única sección de información de contacto -->
                 <div class="contacto-info">
                     <div class="info-card">
                         <h3>📍 Ubicación</h3>
                         <p>Mall Central, San José<br>Frente a la plaza de la cultura</p>
                     </div>
-                    
+
                     <div class="info-card">
                         <h3>📱 Teléfonos</h3>
                         <p>Administración: 2222-3333<br>
-                           Reservas: 2222-3344<br>
-                           Soporte: 2222-3355</p>
+                            Reservas: 2222-3344<br>
+                            Soporte: 2222-3355</p>
                     </div>
-                    
+
                     <div class="info-card">
                         <h3>✉ Email</h3>
                         <p>info@cineuxd.com<br>
-                           reservaciones@cineuxd.com<br>
-                           soporte@cineuxd.com</p>
+                            reservaciones@cineuxd.com<br>
+                            soporte@cineuxd.com</p>
                     </div>
-                    
+
                     <div class="info-card">
                         <h3>⏰ Horarios</h3>
                         <p>Taquilla: 11:00 AM - 11:00 PM<br>
-                           Funciones: 12:00 PM - 12:00 AM<br>
-                           Todos los días</p>
+                            Funciones: 12:00 PM - 12:00 AM<br>
+                            Todos los días</p>
                     </div>
 
                     <div class="info-card social-card">
@@ -76,6 +78,7 @@ if(!isset($_SESSION['usuario'])) {
                         </a>
                     </div>
                 </div>
+<<<<<<< HEAD
                 
                 <div class="contacto-form">
                     <h2>Envíanos un mensaje</h2>
@@ -103,11 +106,15 @@ if(!isset($_SESSION['usuario'])) {
                         <button type="submit" class="btn-primary">Enviar mensaje</button>
                     </form>
                 </div>
+=======
+                <!-- No hay formulario ni duplicados -->
+>>>>>>> Alejandro
             </div>
         </div>
     </main>
 
     <footer class="main-footer">
+<<<<<<< HEAD
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Cine U XD</h4>
@@ -132,10 +139,14 @@ if(!isset($_SESSION['usuario'])) {
             </div>
         </div>
         <div class="footer-bottom">
+=======
+        <div class="footer-container">
+>>>>>>> Alejandro
             <p>© <?= date("Y"); ?> Cine U XD - Todos los derechos reservados</p>
         </div>
     </footer>
 
+<<<<<<< HEAD
     <script>
     document.getElementById('contactoForm').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -251,6 +262,42 @@ if(!isset($_SESSION['usuario'])) {
         outline: none;
         border-color: #6bc9da;
     }
+=======
+    <style>
+        .instagram-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #f77737);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .instagram-link:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .social-link {
+            color: #6bc9da;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: #187bcd;
+        }
+
+        .social-card {
+            background: linear-gradient(135deg, rgba(131, 58, 180, 0.1), rgba(253, 29, 29, 0.1), rgba(247, 119, 55, 0.1));
+            border-left: 4px solid #833ab4;
+        }
+>>>>>>> Alejandro
     </style>
 </body>
+
 </html>
