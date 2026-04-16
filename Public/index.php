@@ -4,8 +4,11 @@ session_start();
 // Obtener la ruta (por defecto: home)
 $route = $_GET['route'] ?? 'home';
 
-// Si NO hay sesión y no está en login → forzar login
-if (!isset($_SESSION['usuario']) && $route !== 'login') {
+// 🔥 Rutas públicas (NO requieren login)
+$rutas_publicas = ['login'];
+
+// Si NO hay sesión y no es ruta pública → forzar login
+if (!isset($_SESSION['usuario']) && !in_array($route, $rutas_publicas)) {
     require_once __DIR__ . '/../App/Views/auth/login.php';
     exit;
 }
@@ -13,6 +16,7 @@ if (!isset($_SESSION['usuario']) && $route !== 'login') {
 // Router principal MVC
 switch ($route) {
 
+    // 🔹 CLIENTE
     case 'home':
         require_once __DIR__ . '/../App/Views/cliente/home.php';
         break;
@@ -33,7 +37,8 @@ switch ($route) {
         require_once __DIR__ . '/../App/Views/cliente/contacto.php';
         break;
 
-    case 'reserva': // 🔥 ESTE DEBE IR ANTES DEL DEFAULT
+    // 🔹 RESERVAS
+    case 'reserva':
         require_once __DIR__ . '/../App/Controllers/ReservaController.php';
         $controller = new ReservaController();
         $controller->guardar();
@@ -45,6 +50,26 @@ switch ($route) {
         $controller->index();
         break;
 
+    case 'asientos':
+        require_once __DIR__ . '/../App/Controllers/ReservaController.php';
+        $controller = new ReservaController();
+        $controller->seleccionarAsiento();
+        break;
+
+    case 'guardar_reserva':
+        require_once __DIR__ . '/../App/Controllers/ReservaController.php';
+        $controller = new ReservaController();
+        $controller->guardarConAsiento();
+        break;
+
+    // 🔥 NUEVO: CANCELAR RESERVA
+    case 'cancelar_reserva':
+        require_once __DIR__ . '/../App/Controllers/ReservaController.php';
+        $controller = new ReservaController();
+        $controller->cancelar();
+        break;
+
+    // 🔹 AUTH
     case 'login':
         require_once __DIR__ . '/../App/Views/auth/login.php';
         break;
@@ -54,6 +79,7 @@ switch ($route) {
         header("Location: /public/index.php?route=login");
         exit;
 
+    // 🔹 ADMIN
     case 'admin':
         require_once __DIR__ . '/../App/Controllers/AdminController.php';
         $controller = new AdminController();
@@ -94,5 +120,10 @@ switch ($route) {
         require_once __DIR__ . '/../App/Controllers/AdminController.php';
         $controller = new AdminController();
         $controller->guardarAsiento();
+        break;
+
+    // 🔴 DEFAULT
+    default:
+        echo "<h1>404 - Página no encontrada</h1>";
         break;
 }

@@ -10,15 +10,26 @@ class PeliculaController {
             session_start();
         }
 
+        // 🔥 seguridad (mejor en controller)
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: /public/index.php?route=login");
+            exit;
+        }
+
         $movieModel = new Movie();
 
-        // 🔥 SIEMPRE inicializamos
-        $peliculas = [];
+        try {
 
-        $resultado = $movieModel->obtenerPeliculas();
+            // 🔥 obtenemos directamente
+            $peliculas = $movieModel->obtenerPeliculas() ?? [];
 
-        if ($resultado) {
-            $peliculas = $resultado;
+        } catch (Exception $e) {
+
+            // 🔥 fallback seguro
+            $peliculas = [];
+
+            // opcional debug
+            // echo $e->getMessage();
         }
 
         require __DIR__ . '/../Views/cliente/cartelera.php';

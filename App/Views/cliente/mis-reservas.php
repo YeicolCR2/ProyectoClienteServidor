@@ -59,6 +59,15 @@ if (session_status() === PHP_SESSION_NONE) {
 
                 <p><strong>Estado:</strong> <?php echo $r['estado']; ?></p>
 
+                <!-- 🔥 BOTÓN CANCELAR -->
+                <div style="margin-top:15px;">
+                    <a href="/public/index.php?route=cancelar_reserva&id=<?php echo $r['id_reserva']; ?>"
+                       style="background:red; color:white; padding:8px 12px; text-decoration:none; border-radius:5px;"
+                       onclick="return confirm('¿Seguro que deseas cancelar esta reserva?');">
+                        Cancelar Reserva
+                    </a>
+                </div>
+
             </div>
 
         <?php endforeach; ?>

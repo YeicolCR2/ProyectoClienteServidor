@@ -9,10 +9,13 @@ class Reserva {
     public function __construct() {
         $database = new Database();
         $this->conn = $database->conectar();
+
+        // 🔥 IMPORTANTE: activar errores PDO
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    // 🔥 CREAR RESERVA
-    public function crearReserva($id_usuario, $id_pelicula) {
+    // 🔥 CREAR RESERVA SIMPLE
+    public function crearReserva($id_usuario, $id_funcion) {
 
         $sql = "INSERT INTO Reserva (fecha_reserva, estado, id_usuario, id_funcion)
                 VALUES (NOW(), 'activa', :id_usuario, :id_funcion)";
@@ -20,12 +23,56 @@ class Reserva {
         $stmt = $this->conn->prepare($sql);
 
         $stmt->bindParam(':id_usuario', $id_usuario);
-        $stmt->bindParam(':id_funcion', $id_pelicula);
+        $stmt->bindParam(':id_funcion', $id_funcion);
 
         return $stmt->execute();
     }
 
-    // 🔥 OBTENER RESERVAS (ESTO ES LO QUE FALTABA)
+    // 🔥 CREAR RESERVA + ASIENTO (PRO)
+    public function crearReservaConAsiento($id_usuario, $id_funcion, $id_asiento)
+    {
+        try {
+
+            $this->conn->beginTransaction();
+
+            // 1. Crear reserva
+            $sql = "INSERT INTO Reserva (fecha_reserva, estado, id_usuario, id_funcion)
+                    VALUES (NOW(), 'activa', :id_usuario, :id_funcion)";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id_usuario', $id_usuario);
+            $stmt->bindParam(':id_funcion', $id_funcion);
+            $stmt->execute();
+
+            // 2. Obtener ID generado
+            $id_reserva = $this->conn->lastInsertId();
+
+            // 3. Guardar asiento
+            $sql2 = "INSERT INTO Reserva_Asiento (id_reserva, id_asiento, id_funcion)
+                     VALUES (:id_reserva, :id_asiento, :id_funcion)";
+
+            $stmt2 = $this->conn->prepare($sql2);
+            $stmt2->bindParam(':id_reserva', $id_reserva);
+            $stmt2->bindParam(':id_asiento', $id_asiento);
+            $stmt2->bindParam(':id_funcion', $id_funcion);
+            $stmt2->execute();
+
+            $this->conn->commit();
+
+            return true;
+
+        } catch (Exception $e) {
+
+            $this->conn->rollBack();
+
+            // 🔥 opcional: debug
+            // echo $e->getMessage();
+
+            return false;
+        }
+    }
+
+    // 🔥 OBTENER RESERVAS DEL USUARIO
     public function obtenerReservasPorUsuario($id_usuario) {
 
         $sql = "SELECT 
@@ -43,6 +90,53 @@ class Reserva {
         $stmt->bindParam(':id_usuario', $id_usuario);
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // 🔥 OBTENER SOLO IDs DE ASIENTOS OCUPADOS (MEJORADO)
+    public function obtenerAsientosOcupados($id_funcion)
+    {
+        $sql = "SELECT id_asiento FROM Reserva_Asiento WHERE id_funcion = :id_funcion";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id_funcion', $id_funcion);
+        $stmt->execute();
+
+        // 🔥 devuelve array plano: [1,2,3]
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    // 🔥 ELIMINAR RESERVA (CON INTEGRIDAD REFERENCIAL)
+    public function eliminarReserva($id_reserva)
+    {
+        try {
+
+            $this->conn->beginTransaction();
+
+            // 1. Eliminar asientos primero (FK)
+            $sql1 = "DELETE FROM Reserva_Asiento WHERE id_reserva = :id_reserva";
+            $stmt1 = $this->conn->prepare($sql1);
+            $stmt1->bindParam(':id_reserva', $id_reserva);
+            $stmt1->execute();
+
+            // 2. Eliminar reserva
+            $sql2 = "DELETE FROM Reserva WHERE id_reserva = :id_reserva";
+            $stmt2 = $this->conn->prepare($sql2);
+            $stmt2->bindParam(':id_reserva', $id_reserva);
+            $stmt2->execute();
+
+            $this->conn->commit();
+
+            return true;
+
+        } catch (Exception $e) {
+
+            $this->conn->rollBack();
+
+            // 🔥 opcional debug
+            // echo $e->getMessage();
+
+            return false;
+        }
     }
 }
