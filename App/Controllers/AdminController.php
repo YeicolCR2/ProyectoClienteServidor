@@ -125,4 +125,145 @@ class AdminController
             exit;
         }
     }
+
+    public function eliminarCine()
+    {
+        $this->validarAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_cine'] ?? null;
+
+            if ($id) {
+                $ok = $this->adminModel->deleteCine($id);
+
+                if ($ok) {
+                    header("Location: /public/index.php?route=admin&deleted=1");
+                    exit;
+                } else {
+                    header("Location: /public/index.php?route=admin&error=1");
+                    exit;
+                }
+            }
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+
+    public function eliminarSala()
+    {
+        $this->validarAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_sala'] ?? null;
+
+            if ($id) {
+                $ok = $this->adminModel->deleteSala($id);
+
+                if ($ok) {
+                    header("Location: /public/index.php?route=admin&deleted=1");
+                    exit;
+                } else {
+                    header("Location: /public/index.php?route=admin&error=1");
+                    exit;
+                }
+            }
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+    public function eliminarPelicula()
+    {
+        $this->validarAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_pelicula'] ?? null;
+
+            if ($id) {
+                $ok = $this->adminModel->deletePelicula($id);
+
+                if ($ok) {
+                    header("Location: /public/index.php?route=admin&deleted=1");
+                    exit;
+                } else {
+                    header("Location: /public/index.php?route=admin&error=1");
+                    exit;
+                }
+            }
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+    public function eliminarGenero()
+    {
+        $this->validarAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_genero'] ?? null;
+
+            if ($id) {
+                $ok = $this->adminModel->deleteGenero($id);
+
+                if ($ok) {
+                    header("Location: /public/index.php?route=admin&deleted=1");
+                    exit;
+                } else {
+                    header("Location: /public/index.php?route=admin&error=1");
+                    exit;
+                }
+            }
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+
+    public function eliminarFuncion()
+    {
+        $this->validarAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_funcion'] ?? null;
+
+            if ($id) {
+                $ok = $this->adminModel->deleteFuncion($id);
+
+                if ($ok) {
+                    header("Location: /public/index.php?route=admin&deleted=1");
+                    exit;
+                } else {
+                    header("Location: /public/index.php?route=admin&error=1");
+                    exit;
+                }
+            }
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+    public function eliminarAsiento()
+    {
+        $this->validarAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_asiento'] ?? null;
+
+            if ($id) {
+                $ok = $this->adminModel->deleteAsiento($id);
+
+                if ($ok) {
+                    header("Location: /public/index.php?route=admin&deleted=1");
+                    exit;
+                } else {
+                    header("Location: /public/index.php?route=admin&error=1");
+                    exit;
+                }
+            }
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
 }

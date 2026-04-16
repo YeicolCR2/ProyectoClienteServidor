@@ -1,11 +1,13 @@
 <?php if (!isset($_SESSION)) session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin</title>
     <link rel="stylesheet" href="/public/css/admin.css">
 </head>
+
 <body>
 
     <header class="admin-header">
@@ -28,6 +30,13 @@
 
         <?php if (isset($_GET['success'])): ?>
             <div class="admin-alert">Registro guardado correctamente.</div>
+        <?php endif; ?>
+        <?php if (isset($_GET['deleted'])): ?>
+            <div class="admin-alert">Registro eliminado correctamente.</div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error'])): ?>
+            <div class="admin-alert error">No se pudo eliminar el registro.</div>
         <?php endif; ?>
 
         <section class="admin-grid">
@@ -149,6 +158,7 @@
                             <th>Duración</th>
                             <th>Fecha Estreno</th>
                             <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -159,6 +169,12 @@
                                 <td><?php echo $pelicula['duracion']; ?></td>
                                 <td><?php echo $pelicula['fecha_estreno']; ?></td>
                                 <td><?php echo $pelicula['estado']; ?></td>
+                                <td>
+                                    <form action="/public/index.php?route=eliminar-pelicula" method="POST" onsubmit="return confirm('¿Desea eliminar esta película?');">
+                                        <input type="hidden" name="id_pelicula" value="<?php echo $pelicula['id_pelicula']; ?>">
+                                        <button type="submit" class="btn-delete">Eliminar</button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -166,7 +182,177 @@
 
             </div>
         </section>
+        <section class="admin-table-section">
+            <div class="admin-table-card">
+                <h2>Cines Registrados</h2>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Ciudad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($cines as $cine): ?>
+                            <tr>
+                                <td><?php echo $cine['id_cine']; ?></td>
+                                <td><?php echo $cine['nombre']; ?></td>
+                                <td><?php echo $cine['direccion']; ?></td>
+                                <td><?php echo $cine['ciudad']; ?></td>
+                                <td>
+                                    <form action="/public/index.php?route=eliminar-cine" method="POST" onsubmit="return confirm('¿Desea eliminar este cine?');">
+                                        <input type="hidden" name="id_cine" value="<?php echo $cine['id_cine']; ?>">
+                                        <button type="submit" class="btn-delete">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="admin-table-section">
+            <div class="admin-table-card">
+                <h2>Salas Registradas</h2>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Número</th>
+                            <th>Tipo</th>
+                            <th>Cine</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($salas as $sala): ?>
+                            <tr>
+                                <td><?php echo $sala['id_sala']; ?></td>
+                                <td><?php echo $sala['numero']; ?></td>
+                                <td><?php echo $sala['tipo']; ?></td>
+                                <td><?php echo $sala['cine_nombre']; ?></td>
+                                <td>
+                                    <form action="/public/index.php?route=eliminar-sala" method="POST" onsubmit="return confirm('¿Desea eliminar esta sala?');">
+                                        <input type="hidden" name="id_sala" value="<?php echo $sala['id_sala']; ?>">
+                                        <button type="submit" class="btn-delete">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="admin-table-section">
+            <div class="admin-table-card">
+                <h2>Géneros Registrados</h2>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Película</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($generos as $genero): ?>
+                            <tr>
+                                <td><?php echo $genero['id_genero']; ?></td>
+                                <td><?php echo $genero['nombre']; ?></td>
+                                <td><?php echo $genero['pelicula_titulo']; ?></td>
+                                <td>
+                                    <form action="/public/index.php?route=eliminar-genero" method="POST" onsubmit="return confirm('¿Desea eliminar este género?');">
+                                        <input type="hidden" name="id_genero" value="<?php echo $genero['id_genero']; ?>">
+                                        <button type="submit" class="btn-delete">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="admin-table-section">
+            <div class="admin-table-card">
+                <h2>Funciones Registradas</h2>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Precio</th>
+                            <th>Película</th>
+                            <th>Sala</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($funciones as $funcion): ?>
+                            <tr>
+                                <td><?php echo $funcion['id_funcion']; ?></td>
+                                <td><?php echo $funcion['fecha']; ?></td>
+                                <td><?php echo $funcion['hora']; ?></td>
+                                <td><?php echo $funcion['precio']; ?></td>
+                                <td><?php echo $funcion['pelicula_titulo']; ?></td>
+                                <td><?php echo $funcion['sala_numero']; ?></td>
+                                <td>
+                                    <form action="/public/index.php?route=eliminar-funcion" method="POST" onsubmit="return confirm('¿Desea eliminar esta función?');">
+                                        <input type="hidden" name="id_funcion" value="<?php echo $funcion['id_funcion']; ?>">
+                                        <button type="submit" class="btn-delete">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="admin-table-section">
+            <div class="admin-table-card">
+                <h2>Asientos Registrados</h2>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fila</th>
+                            <th>Número</th>
+                            <th>Sala</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($asientos as $asiento): ?>
+                            <tr>
+                                <td><?php echo $asiento['id_asiento']; ?></td>
+                                <td><?php echo $asiento['fila']; ?></td>
+                                <td><?php echo $asiento['numero']; ?></td>
+                                <td><?php echo $asiento['sala_numero']; ?></td>
+                                <td>
+                                    <form action="/public/index.php?route=eliminar-asiento" method="POST" onsubmit="return confirm('¿Desea eliminar este asiento?');">
+                                        <input type="hidden" name="id_asiento" value="<?php echo $asiento['id_asiento']; ?>">
+                                        <button type="submit" class="btn-delete">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
     </main>
 
 </body>
+
 </html>
