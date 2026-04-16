@@ -24,7 +24,9 @@ switch ($route) {
         break;
 
     case 'cines':
-        require_once __DIR__ . '/../App/Views/cliente/cines.php';
+        require_once __DIR__ . '/../App/Controllers/CineController.php';
+        $controller = new CineController();
+        $controller->index();
         break;
 
     case 'contacto':
@@ -52,7 +54,45 @@ switch ($route) {
         header("Location: /public/index.php?route=login");
         exit;
 
-    default:
-        echo "<h1>404 - Página no encontrada</h1>";
+    case 'admin':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->dashboard();
+        break;
+
+    case 'guardar-cine':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarCine();
+        break;
+
+    case 'guardar-sala':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarSala();
+        break;
+
+    case 'guardar-pelicula':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarPelicula();
+        break;
+
+    case 'guardar-genero':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarGenero();
+        break;
+
+    case 'guardar-funcion':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarFuncion();
+        break;
+
+    case 'guardar-asiento':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarAsiento();
         break;
 }
