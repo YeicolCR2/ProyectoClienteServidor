@@ -13,14 +13,14 @@ if (!isset($_SESSION['usuario']) && $route !== 'login') {
 // Router principal MVC
 switch ($route) {
 
+    case 'home':
+        require_once __DIR__ . '/../App/Views/cliente/home.php';
+        break;
+
     case 'cartelera':
         require_once __DIR__ . '/../App/Controllers/PeliculaController.php';
         $controller = new PeliculaController();
         $controller->index();
-        break;
-
-    case 'home':
-        require_once __DIR__ . '/../App/Views/cliente/home.php';
         break;
 
     case 'cines':
@@ -44,12 +44,53 @@ switch ($route) {
         header("Location: /public/index.php?route=login");
         exit;
 
-    default:
-        echo "<h1>404 - Página no encontrada</h1>";
+    case 'admin':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->dashboard();
+        break;
+
+    case 'guardar-cine':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarCine();
+        break;
+
+    case 'guardar-sala':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarSala();
+        break;
+
+    case 'guardar-pelicula':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarPelicula();
+        break;
+
+    case 'guardar-genero':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarGenero();
+        break;
+
+    case 'guardar-funcion':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarFuncion();
+        break;
+
+    case 'guardar-asiento':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->guardarAsiento();
         break;
 
     case 'reserva':
-    require_once __DIR__ . '/../App/Controllers/ReservaController.php';
-    break;
-}
+        require_once __DIR__ . '/../App/Controllers/ReservaController.php';
+        break;
 
+    default:
+        echo "<h1>404 - Página no encontrada</h1>";
+        break;
+}
