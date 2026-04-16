@@ -73,22 +73,196 @@ if (!isset($_SESSION['usuario'])) {
                     <div class="info-card social-card">
                         <h3>📱 Redes Sociales</h3>
                         <p>Síguenos en Instagram para estar al tanto de estrenos y promociones:</p>
-                        <a href="https://www.instagram.com/cineuxd.oficial/" target="_blank" class="instagram-link">
+                        <a href="https://www.instagram.com/" target="_blank" class="instagram-link">
                             <i class="fab fa-instagram"></i> @cineuxd_cr
                         </a>
                     </div>
                 </div>
+<<<<<<< HEAD
+                
+                <div class="contacto-form">
+                    <h2>Envíanos un mensaje</h2>
+                    <form id="contactoForm">
+                        <div class="form-group">
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="correo" name="correo" placeholder="Tu correo" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="asunto" name="asunto" required>
+                                <option value="" disabled selected>Selecciona un asunto</option>
+                                <option value="consulta">📝 Consulta general</option>
+                                <option value="reserva">🎟️ Problema con reserva</option>
+                                <option value="sugerencia">💡 Sugerencia</option>
+                                <option value="reclamo">⚠️ Reclamo</option>
+                                <option value="promociones">🎁 Promociones</option>
+                                <option value="trabajo">💼 Trabaja con nosotros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Tu mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Enviar mensaje</button>
+                    </form>
+                </div>
+=======
                 <!-- No hay formulario ni duplicados -->
+>>>>>>> Alejandro
             </div>
         </div>
     </main>
 
     <footer class="main-footer">
+<<<<<<< HEAD
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Cine U XD</h4>
+                <p>Tu mejor experiencia cinematográfica</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>📍 Mall Central, San José</p>
+                <p>📞 2222-3333</p>
+                <p>✉ info@cineuxd.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>Horarios</h4>
+                <p>Lunes a Domingo</p>
+                <p>12:00 PM - 12:00 AM</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <a href="https://www.instagram.com/" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+=======
         <div class="footer-container">
+>>>>>>> Alejandro
             <p>© <?= date("Y"); ?> Cine U XD - Todos los derechos reservados</p>
         </div>
     </footer>
 
+<<<<<<< HEAD
+    <script>
+    document.getElementById('contactoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nombre = document.getElementById('nombre').value;
+        const correo = document.getElementById('correo').value;
+        const asuntoSelect = document.getElementById('asunto');
+        const asuntoTexto = asuntoSelect.options[asuntoSelect.selectedIndex].text;
+        const asuntoValor = asuntoSelect.value;
+        const mensaje = document.getElementById('mensaje').value;
+        
+        // Mapear asuntos a iconos
+        const iconos = {
+            'consulta': '📝',
+            'reserva': '🎟️',
+            'sugerencia': '💡',
+            'reclamo': '⚠️',
+            'promociones': '🎁',
+            'trabajo': '💼'
+        };
+        
+        const icono = iconos[asuntoValor] || '📧';
+        
+        // Sweet Alert de éxito
+        Swal.fire({
+            icon: 'success',
+            title: '¡Mensaje enviado!',
+            html: `<p>Gracias <strong>${nombre}</strong>, te responderemos pronto.</p>`,
+            confirmButtonColor: '#6bc9da',
+            confirmButtonText: 'Ver detalles del mensaje'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Mostrar ventana emergente con los datos
+                Swal.fire({
+                    title: '📋 Detalles del mensaje',
+                    html: `
+                        <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                            <p><strong><i class="fas fa-user"></i> Nombre:</strong> ${nombre}</p>
+                            <p><strong><i class="fas fa-envelope"></i> Correo:</strong> ${correo}</p>
+                            <p><strong><i class="fas fa-tag"></i> Asunto:</strong> ${icono} ${asuntoTexto}</p>
+                            <p><strong><i class="fas fa-comment"></i> Mensaje:</strong></p>
+                            <p style="background: #fff; padding: 10px; border-radius: 5px; border-left: 3px solid #6bc9da;">${mensaje}</p>
+                            <hr style="margin: 10px 0;">
+                            <p style="color: #6bc9da; font-size: 12px;"><i class="fas fa-clock"></i> Enviado: ${new Date().toLocaleString()}</p>
+                        </div>
+                    `,
+                    icon: 'info',
+                    confirmButtonColor: '#6bc9da',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+        });
+        
+        // Limpiar formulario
+        this.reset();
+        // Resetear select al placeholder
+        document.getElementById('asunto').value = '';
+    });
+    </script>
+
+    <style>
+    .instagram-link {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #833ab4, #fd1d1d, #f77737);
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: transform 0.3s;
+    }
+    
+    .instagram-link:hover {
+        transform: translateY(-2px);
+        color: white;
+    }
+    
+    .social-link {
+        color: #6bc9da;
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s;
+    }
+    
+    .social-link:hover {
+        color: #187bcd;
+    }
+    
+    .social-card {
+        background: linear-gradient(135deg, rgba(131,58,180,0.1), rgba(253,29,29,0.1), rgba(247,119,55,0.1));
+        border-left: 4px solid #833ab4;
+    }
+    
+    .form-group select {
+        width: 100%;
+        padding: 12px 15px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .form-group select option {
+        background: #1a1a1a;
+        color: #fff;
+        padding: 10px;
+    }
+    
+    .form-group select:focus {
+        outline: none;
+        border-color: #6bc9da;
+    }
+=======
     <style>
         .instagram-link {
             display: inline-block;
@@ -122,6 +296,7 @@ if (!isset($_SESSION['usuario'])) {
             background: linear-gradient(135deg, rgba(131, 58, 180, 0.1), rgba(253, 29, 29, 0.1), rgba(247, 119, 55, 0.1));
             border-left: 4px solid #833ab4;
         }
+>>>>>>> Alejandro
     </style>
 </body>
 

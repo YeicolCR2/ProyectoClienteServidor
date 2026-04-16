@@ -29,16 +29,72 @@
     },
     {
         "id": 5,
+        "nombre": "Adbeel Espinoza Vanegas",
+        "correo": "adbeelvoleibol@gmail.com",
+        "password": "$2y$10$t3IGzU5\/3XbqpkHkGxoKj.s6ToXmXt2OxGrx1LrRaShu1zQcS4MQO",
+        "rol": "cliente"
+    },
+    {
+        "id": 6,
+        "nombre": "Charlie Gonz\u00e1lez Venegas",
+        "correo": "charlie45@gmail.com",
+        "password": "$2y$10$2itOTdQLfS.q7WUuDK26iuOumwK\/hhjWoi\/WcnsHTtf6YRu5nMNAq",
+        "rol": "cliente"
+    },
+    {
+        "id": 7,
+        "nombre": "Adbeel Espinoza Vanegas",
+        "correo": "sirva45@gmail.com",
+        "password": "$2y$10$xJ3.E1.lyx5E0\/A2FHhkKO\/ezK33Vl3CTpg1XuArptA1Ks7hv7Sdu",
+        "rol": "cliente"
+    },
+    {
+        "id": 8,
         "nombre": "Prueba",
         "correo": "prueba@prueba.com",
         "password": "$2y$10$i1TVe.XzFq7M.PKsksygZutXitQv8EVi\/CES7az\/j94Mw\/KaDQMkC",
         "rol": "cliente"
     },
     {
+<<<<<<< HEAD
+        "id": 9,
+        "nombre": "Gustavo Gonz\u00e1lez Espinoza",
+        "correo": "espinoza45@gmail.com",
+        "password": "$2y$10$gx\/V47oUcqkJn5BvXv4ZWumXNLUFgmqHRPFJScFOIB8fYGORxdYCm",
+        "rol": "cliente"
+    },
+    {
+        "id": 10,
+        "nombre": "Samuel",
+        "correo": "samu90@gmail.com",
+        "password": "$2y$10$4r3Zy7lGBEuuvXi9qt4aI.pmjusqFnO77V4oxF.5xLceMGZctdCDK",
+        "rol": "cliente"
+    },
+    {
+        "id": 11,
+        "nombre": "Juanito Mora Porras",
+        "correo": "santamaria32@gmail.com",
+        "password": "$2y$10$gxmhOuK\/YNo2pLPY7wk9R.91\/5xG.XUBsriZcOR8zIHiwGJxWLhkC",
+        "rol": "cliente"
+    },
+    {
+        "id": 12,
+        "nombre": "Alex",
+        "correo": "alex66@gmail.com",
+        "password": "$2y$10$xk.bM.MtR.oelRUARXixIeYdNTbu1kkqmXpEc1NW5QYfITaUAnMZa",
+        "rol": "cliente"
+    },
+    {
+        "id": 13,
+        "nombre": "Alejandro Montero",
+        "correo": "montero34@gmail.com",
+        "password": "$2y$10$T2a6KrLY3VBpzU0SrMsbOe062s8BzEa7MKrnNofRmn8Z.GecQTbmO",
+=======
         "id": 6,
         "nombre": "Alejandro Montero",
         "correo": "alejandromonteror@gmail.com",
         "password": "$2y$10$\/xzUwgmaib7WIBIKPcmWZ.RgVFamVjjFFt2IZHFF3iZvzsYW5BvxC",
+>>>>>>> Alejandro
         "rol": "cliente"
     }
 ]

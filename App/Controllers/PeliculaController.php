@@ -1,14 +1,37 @@
 <?php
 
-require_once __DIR__ . "/../Models/Movie.php";
+require_once __DIR__ . '/../Models/Movie.php';
 
 class PeliculaController {
 
     public function index() {
 
-        $movieModel = new Movie();
-        $peliculas = $movieModel->obtenerPeliculas();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-        require __DIR__ . "/../Views/cliente/cartelera.php";
+        // 🔥 seguridad (mejor en controller)
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: /public/index.php?route=login");
+            exit;
+        }
+
+        $movieModel = new Movie();
+
+        try {
+
+            // 🔥 obtenemos directamente
+            $peliculas = $movieModel->obtenerPeliculas() ?? [];
+
+        } catch (Exception $e) {
+
+            // 🔥 fallback seguro
+            $peliculas = [];
+
+            // opcional debug
+            // echo $e->getMessage();
+        }
+
+        require __DIR__ . '/../Views/cliente/cartelera.php';
     }
 }
