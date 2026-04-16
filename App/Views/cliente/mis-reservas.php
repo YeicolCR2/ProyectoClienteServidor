@@ -2,30 +2,74 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-require_once dirname(__DIR__) . '/../Models/Reserva.php';
-require_once dirname(__DIR__) . '/../Config/database.php';
-
-$db = new Database();
-$conn = $db->conectar();
-
-$id_usuario = $_SESSION['usuario']['id'];
-
-$sql = "SELECT * FROM Reserva WHERE id_usuario = :id_usuario";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':id_usuario', $id_usuario);
-$stmt->execute();
-
-$reservas = $stmt->fetchAll();
 ?>
 
-<h1>Mis Reservas</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Reservas</title>
 
-<?php foreach($reservas as $r): ?>
-    <div>
-        <p>Reserva #<?php echo $r['id_reserva']; ?></p>
-        <p>Película ID: <?php echo $r['id_funcion']; ?></p>
-        <p>Fecha: <?php echo $r['fecha_reserva']; ?></p>
-        <hr>
+    <link rel="stylesheet" href="/public/css/base.css">
+    <link rel="stylesheet" href="/public/css/cliente.css">
+</head>
+
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+
+        <a href="/public/index.php?route=home" class="logo">
+            CINE U XD
+        </a>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/public/index.php?route=home">INICIO</a></li>
+                <li><a href="/public/index.php?route=cartelera">CARTELERA</a></li>
+                <li><a href="/public/index.php?route=cines">CINES</a></li>
+                <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
+                <li><a href="/public/index.php?route=reservas" class="active">MIS RESERVAS</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-menu">
+            <span>👤 <?php echo $_SESSION['usuario']['nombre']; ?></span>
+            <a href="/public/index.php?route=logout" class="btn-logout">CERRAR SESIÓN</a>
+        </div>
+
     </div>
-<?php endforeach; ?>
+</header>
+
+<main style="padding:40px;">
+
+    <h1 style="text-align:center;">🎟️ MIS RESERVAS</h1>
+
+    <?php if (!empty($reservas)): ?>
+
+        <?php foreach($reservas as $r): ?>
+
+            <div style="border:1px solid #ccc; margin:20px auto; padding:20px; max-width:600px; border-radius:10px;">
+
+                <h2><?php echo $r['titulo']; ?></h2>
+
+                <p><?php echo $r['descripcion']; ?></p>
+
+                <p><strong>Fecha:</strong> <?php echo $r['fecha_reserva']; ?></p>
+
+                <p><strong>Estado:</strong> <?php echo $r['estado']; ?></p>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    <?php else: ?>
+
+        <p style="text-align:center;">No tienes reservas aún.</p>
+
+    <?php endif; ?>
+
+</main>
+
+</body>
+</html>

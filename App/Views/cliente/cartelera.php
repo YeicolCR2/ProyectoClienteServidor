@@ -16,7 +16,6 @@ if (!isset($_SESSION['usuario'])) {
     <meta charset="UTF-8">
     <title>Cartelera - Cine U XD</title>
 
-    <!-- Puedes mantener tus estilos si ya los usabas -->
     <link rel="stylesheet" href="/public/css/base.css">
     <link rel="stylesheet" href="/public/css/cliente.css">
     <link rel="stylesheet" href="/public/css/cartelera.css">
@@ -53,7 +52,8 @@ if (!isset($_SESSION['usuario'])) {
 
     <h1 style="text-align:center;">🎬 CARTELERA</h1>
 
-    <?php if (!empty($peliculas)): ?>
+    <!-- 🔥 FIX AQUÍ -->
+    <?php if (isset($peliculas) && count($peliculas) > 0): ?>
 
         <?php foreach ($peliculas as $pelicula): ?>
 
