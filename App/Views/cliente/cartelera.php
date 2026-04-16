@@ -16,7 +16,6 @@ if (!isset($_SESSION['usuario'])) {
     <meta charset="UTF-8">
     <title>Cartelera - Cine U XD</title>
 
-    <!-- Puedes mantener tus estilos si ya los usabas -->
     <link rel="stylesheet" href="/public/css/base.css">
     <link rel="stylesheet" href="/public/css/cliente.css">
     <link rel="stylesheet" href="/public/css/cartelera.css">
@@ -53,7 +52,7 @@ if (!isset($_SESSION['usuario'])) {
 
     <h1 style="text-align:center;">🎬 CARTELERA</h1>
 
-    <?php if (!empty($peliculas)): ?>
+    <?php if (isset($peliculas) && count($peliculas) > 0): ?>
 
         <?php foreach ($peliculas as $pelicula): ?>
 
@@ -68,10 +67,13 @@ if (!isset($_SESSION['usuario'])) {
                 <p><strong>Estreno:</strong> <?php echo $pelicula['fecha_estreno']; ?></p>
 
                 <div style="margin-top:10px;">
-                    <a href="/public/index.php?route=reserva&id=<?php echo $pelicula['id_pelicula']; ?>"
+
+                    <!-- 🔥 BOTÓN CORREGIDO -->
+                    <a href="/public/index.php?route=asientos&id=<?php echo urlencode($pelicula['id_pelicula']); ?>"
                        style="background:#6c5ce7; color:white; padding:10px 15px; text-decoration:none; border-radius:5px;">
-                        Reservar
+                        🎟 Seleccionar Asiento
                     </a>
+
                 </div>
 
             </div>
