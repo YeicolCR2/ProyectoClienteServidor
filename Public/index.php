@@ -24,7 +24,9 @@ switch ($route) {
         break;
 
     case 'cines':
-        require_once __DIR__ . '/../App/Views/cliente/cines.php';
+        require_once __DIR__ . '/../App/Controllers/CineController.php';
+        $controller = new CineController();
+        $controller->index();
         break;
 
     case 'contacto':

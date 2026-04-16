@@ -43,7 +43,7 @@ class AdminController
             $ciudad = trim($_POST['ciudad']);
 
             $this->adminModel->insertCine($nombre, $direccion, $ciudad);
-            header("Location: /public/index.php?route=admin");
+            header("Location: /public/index.php?route=admin&success=1");
             exit;
         }
     }
@@ -58,7 +58,7 @@ class AdminController
             $id_cine = trim($_POST['id_cine']);
 
             $this->adminModel->insertSala($numero, $tipo, $id_cine);
-            header("Location: /public/index.php?route=admin");
+            header("Location: /public/index.php?route=admin&success=1");
             exit;
         }
     }
@@ -75,7 +75,7 @@ class AdminController
             $estado = trim($_POST['estado']);
 
             $this->adminModel->insertPelicula($titulo, $duracion, $descripcion, $fecha_estreno, $estado);
-            header("Location: /public/index.php?route=admin");
+            header("Location: /public/index.php?route=admin&success=1");
             exit;
         }
     }
@@ -89,7 +89,7 @@ class AdminController
             $id_pelicula = trim($_POST['id_pelicula']);
 
             $this->adminModel->insertGenero($nombre, $id_pelicula);
-            header("Location: /public/index.php?route=admin");
+            header("Location: /public/index.php?route=admin&success=1");
             exit;
         }
     }
@@ -106,7 +106,7 @@ class AdminController
             $id_sala = trim($_POST['id_sala']);
 
             $this->adminModel->insertFuncion($fecha, $hora, $precio, $id_pelicula, $id_sala);
-            header("Location: /public/index.php?route=admin");
+            header("Location: /public/index.php?route=admin&success=1");
             exit;
         }
     }
@@ -121,7 +121,7 @@ class AdminController
             $id_sala = trim($_POST['id_sala']);
 
             $this->adminModel->insertAsiento($fila, $numero, $id_sala);
-            header("Location: /public/index.php?route=admin");
+            header("Location: /public/index.php?route=admin&success=1");
             exit;
         }
     }
