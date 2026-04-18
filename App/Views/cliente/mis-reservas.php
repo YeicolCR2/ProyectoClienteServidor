@@ -1,118 +1,84 @@
 <?php
-session_start();
-if(!isset($_SESSION['usuario'])) {
-    header("Location: /app/views/auth/login.php");
-    exit;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Reservas - Cine U XD</title>
+    <title>Mis Reservas</title>
+
     <link rel="stylesheet" href="/public/css/base.css">
     <link rel="stylesheet" href="/public/css/cliente.css">
 </head>
+
 <body>
-    <header class="main-header">
-        <div class="header-container">
-            <a href="/app/views/cliente/home.php" class="logo">🎬 Cine U XD</a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="/app/views/cliente/home.php">Inicio</a></li>
-                    <li><a href="/app/views/cliente/cartelera.php">Cartelera</a></li>
-                    <li><a href="/app/views/cliente/cines.php">Cines</a></li>
-                    <li><a href="/app/views/cliente/contacto.php">Contacto</a></li>
-                    <li><a href="/app/views/cliente/mis-reservas.php" class="active">Mis Reservas</a></li>
-                </ul>
-            </nav>
-            <div class="user-menu">
-                <span>👤 <?php echo $_SESSION['usuario']['nombre']; ?></span>
-                <a href="/app/Controllers/LogoutController.php" class="btn-logout">Cerrar Sesión</a>
-            </div>
-        </div>
-    </header>
 
-    <main>
-        <div class="container">
-            <h1 class="page-title">🎟️ MIS RESERVAS</h1>
-            
-            <h2>Reservas Activas</h2>
-            <div class="reservas-grid">
-                <div class="reserva-card">
-                    <img src="/public/PIC/spiderman.jpg" alt="Spider-Man">
-                    <div class="reserva-info">
-                        <h3>Spider-Man: No Way Home</h3>
-                        <p><strong>Fecha:</strong> 15/03/2026</p>
-                        <p><strong>Horario:</strong> 19:30</p>
-                        <p><strong>Sala:</strong> Sala 3 - IMAX</p>
-                        <p><strong>Cine:</strong> Cine U XD San José</p>
-                        <p><strong>Asientos:</strong> A12, A13</p>
-                        <p><strong>Total:</strong> ₡7,000</p>
-                        <div class="reserva-acciones">
-                            <span class="badge activa">Activa</span>
-                            <button class="btn-cancelar">Cancelar</button>
-                        </div>
-                    </div>
+<header class="main-header">
+    <div class="header-container">
+
+        <a href="/public/index.php?route=home" class="logo">
+            CINE U XD
+        </a>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/public/index.php?route=home">INICIO</a></li>
+                <li><a href="/public/index.php?route=cartelera">CARTELERA</a></li>
+                <li><a href="/public/index.php?route=cines">CINES</a></li>
+                <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
+                <li><a href="/public/index.php?route=reservas" class="active">MIS RESERVAS</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-menu">
+            <span>👤 <?php echo $_SESSION['usuario']['nombre']; ?></span>
+            <a href="/public/index.php?route=logout" class="btn-logout">CERRAR SESIÓN</a>
+        </div>
+
+    </div>
+</header>
+
+<main style="padding:40px;">
+
+    <h1 style="text-align:center;">🎟️ MIS RESERVAS</h1>
+
+    <?php if (!empty($reservas)): ?>
+
+        <?php foreach($reservas as $r): ?>
+
+            <div style="border:1px solid #ccc; margin:20px auto; padding:20px; max-width:600px; border-radius:10px;">
+
+                <h2><?php echo $r['titulo']; ?></h2>
+
+                <p><?php echo $r['descripcion']; ?></p>
+
+                <p><strong>Fecha:</strong> <?php echo $r['fecha_reserva']; ?></p>
+
+                <p><strong>Estado:</strong> <?php echo $r['estado']; ?></p>
+
+                <!-- 🔥 BOTÓN CANCELAR -->
+                <div style="margin-top:15px;">
+                    <a href="/public/index.php?route=cancelar_reserva&id=<?php echo $r['id_reserva']; ?>"
+                       style="background:red; color:white; padding:8px 12px; text-decoration:none; border-radius:5px;"
+                       onclick="return confirm('¿Seguro que deseas cancelar esta reserva?');">
+                        Cancelar Reserva
+                    </a>
                 </div>
 
-                <div class="reserva-card">
-                    <img src="/public/PIC/dbz.jpg" alt="Dragon Ball">
-                    <div class="reserva-info">
-                        <h3>Dragon Ball Super: Super Hero</h3>
-                        <p><strong>Fecha:</strong> 16/03/2026</p>
-                        <p><strong>Horario:</strong> 17:30</p>
-                        <p><strong>Sala:</strong> Sala 1 - 2D</p>
-                        <p><strong>Cine:</strong> Cine U XD Escazú</p>
-                        <p><strong>Asientos:</strong> B5, B6</p>
-                        <p><strong>Total:</strong> ₡5,000</p>
-                        <div class="reserva-acciones">
-                            <span class="badge activa">Activa</span>
-                            <button class="btn-cancelar">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <h2 class="mt-4">Historial</h2>
-            <div class="reservas-grid">
-                <div class="reserva-card historial">
-                    <img src="/public/PIC/inter.jpg" alt="Interstellar">
-                    <div class="reserva-info">
-                        <h3>Interstellar</h3>
-                        <p><strong>Fecha:</strong> 10/03/2026</p>
-                        <p><strong>Horario:</strong> 22:30</p>
-                        <p><strong>Asientos:</strong> C3, C4, C5</p>
-                        <p><strong>Total:</strong> ₡10,500</p>
-                        <span class="badge completada">Completada</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+        <?php endforeach; ?>
 
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Cine U XD</h4>
-                <p>Tu mejor experiencia cinematográfica</p>
-            </div>
-            <div class="footer-section">
-                <h4>Contacto</h4>
-                <p>📍 Mall Central, San José</p>
-                <p>📞 2222-3333</p>
-                <p>✉ info@cineuxd.com</p>
-            </div>
-            <div class="footer-section">
-                <h4>Horarios</h4>
-                <p>Lunes a Domingo</p>
-                <p>12:00 PM - 12:00 AM</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© <?= date("Y"); ?> Cine U XD - Todos los derechos reservados</p>
-        </div>
-    </footer>
+    <?php else: ?>
+
+        <p style="text-align:center;">No tienes reservas aún.</p>
+
+    <?php endif; ?>
+
+</main>
+
 </body>
 </html>

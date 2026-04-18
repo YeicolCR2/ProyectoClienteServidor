@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background:
@@ -6,9 +12,9 @@ body {
         #03081b;
     color: white;
     min-height: 100vh;
-    margin: 0;
 }
 
+/* HEADER IGUAL AL HOME */
 .main-header {
     width: 100%;
     padding: 22px 50px;
@@ -34,6 +40,10 @@ body {
     color: #29d8ff;
     letter-spacing: 1px;
     white-space: nowrap;
+}
+
+.logo span {
+    color: #7a3cff;
 }
 
 .main-nav ul {
@@ -93,35 +103,34 @@ body {
     box-shadow: 0 0 15px rgba(255, 0, 200, 0.35);
 }
 
-.page-container {
+/* CONTENIDO */
+.cines-container {
     max-width: 980px;
     margin: 45px auto 0;
     padding: 0 20px 50px;
 }
 
-.page-intro {
+.page-title {
     text-align: center;
-    margin-bottom: 35px;
-}
-
-.page-intro h1 {
     font-size: 2rem;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-.page-intro p {
+.page-subtitle {
+    text-align: center;
     color: #b8c1ec;
     font-size: 1rem;
+    margin-bottom: 35px;
 }
 
-.cards-grid {
+.cines-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
 
-.mini-card {
+.cine-card {
     background: rgba(0, 0, 0, 0.50);
     border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 16px;
@@ -129,31 +138,49 @@ body {
     transition: 0.3s ease;
 }
 
-.mini-card:hover {
+.cine-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 16px rgba(122, 60, 255, 0.18);
 }
 
-.mini-card h2 {
+.cine-card h2 {
     font-size: 1.6rem;
     margin-bottom: 14px;
     border-left: 4px solid #00eaff;
     padding-left: 10px;
+    color: #ffffff;
 }
 
-.mini-card p {
+.cine-card p {
     color: #f1f1f1;
     line-height: 1.6;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     font-size: 0.97rem;
 }
 
-.mini-card a {
-    text-decoration: none;
-    color: #7a7dff;
-    font-weight: bold;
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .user-menu {
+        flex-wrap: wrap;
+    }
 }
 
-.mini-card a:hover {
-    color: #00eaff;
+@media (max-width: 768px) {
+    .main-header {
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 1.7rem;
+    }
 }
