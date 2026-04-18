@@ -145,7 +145,7 @@ class Admin
     {
         try {
             $this->conn->beginTransaction();
-    ///prueba
+    ///prueba2
             // Eliminar asientos de salas que pertenecen al cine
             $sqlAsientos = "DELETE a
                         FROM Asiento a
