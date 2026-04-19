@@ -1,5 +1,4 @@
 <?php
-
 require_once dirname(__DIR__) . '/../Config/database.php';
 
 class Admin
@@ -12,6 +11,9 @@ class Admin
         $this->conn = $database->conectar();
     }
 
+    // ------------------------------------------------------------
+    // Métodos de consulta (GET)
+    // ------------------------------------------------------------
     public function getCines()
     {
         $sql = "SELECT * FROM Cine ORDER BY id_cine DESC";
@@ -37,6 +39,15 @@ class Admin
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public function getPeliculaById($id)
+    {
+        $sql = "SELECT * FROM Pelicula WHERE id_pelicula = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
     public function getGeneros()
@@ -73,6 +84,9 @@ class Admin
         return $stmt->fetchAll();
     }
 
+    // ------------------------------------------------------------
+    // Métodos de inserción (INSERT)
+    // ------------------------------------------------------------
     public function insertCine($nombre, $direccion, $ciudad)
     {
         $sql = "INSERT INTO Cine (nombre, direccion, ciudad)
@@ -95,16 +109,19 @@ class Admin
         return $stmt->execute();
     }
 
-    public function insertPelicula($titulo, $duracion, $descripcion, $fecha_estreno, $estado)
+    public function insertPelicula($titulo, $duracion, $descripcion, $fecha_estreno, $estado, $imagen = null)
     {
-        $sql = "INSERT INTO Pelicula (titulo, duracion, descripcion, fecha_estreno, estado)
-                VALUES (:titulo, :duracion, :descripcion, :fecha_estreno, :estado)";
+        // Si no se proporciona imagen, usar default.jpg
+        $imagen = $imagen ?? 'default.jpg';
+        $sql = "INSERT INTO Pelicula (titulo, duracion, descripcion, fecha_estreno, estado, imagen)
+                VALUES (:titulo, :duracion, :descripcion, :fecha_estreno, :estado, :imagen)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':titulo', $titulo);
         $stmt->bindParam(':duracion', $duracion);
         $stmt->bindParam(':descripcion', $descripcion);
         $stmt->bindParam(':fecha_estreno', $fecha_estreno);
         $stmt->bindParam(':estado', $estado);
+        $stmt->bindParam(':imagen', $imagen);
         return $stmt->execute();
     }
 
@@ -141,6 +158,49 @@ class Admin
         $stmt->bindParam(':id_sala', $id_sala);
         return $stmt->execute();
     }
+
+    // ------------------------------------------------------------
+    // Método de actualización (UPDATE) para Película
+    // ------------------------------------------------------------
+    public function updatePelicula($id, $titulo, $duracion, $descripcion, $fecha_estreno, $estado, $imagen = null)
+    {
+        if ($imagen !== null) {
+            // Si se proporciona una nueva imagen, la actualizamos
+            $sql = "UPDATE Pelicula SET 
+                    titulo = :titulo,
+                    duracion = :duracion,
+                    descripcion = :descripcion,
+                    fecha_estreno = :fecha_estreno,
+                    estado = :estado,
+                    imagen = :imagen
+                    WHERE id_pelicula = :id";
+        } else {
+            // Si no hay nueva imagen, no modificamos el campo imagen
+            $sql = "UPDATE Pelicula SET 
+                    titulo = :titulo,
+                    duracion = :duracion,
+                    descripcion = :descripcion,
+                    fecha_estreno = :fecha_estreno,
+                    estado = :estado
+                    WHERE id_pelicula = :id";
+        }
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':titulo', $titulo);
+        $stmt->bindParam(':duracion', $duracion);
+        $stmt->bindParam(':descripcion', $descripcion);
+        $stmt->bindParam(':fecha_estreno', $fecha_estreno);
+        $stmt->bindParam(':estado', $estado);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($imagen !== null) {
+            $stmt->bindParam(':imagen', $imagen);
+        }
+        return $stmt->execute();
+    }
+
+    // ------------------------------------------------------------
+    // Métodos de eliminación (DELETE)
+    // ------------------------------------------------------------
     public function deleteCine($id)
     {
         try {
