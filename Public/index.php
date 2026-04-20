@@ -79,7 +79,7 @@ switch ($route) {
         header("Location: /public/index.php?route=login");
         exit;
 
-    // 🔹 ADMIN
+        // 🔹 ADMIN
     case 'admin':
         require_once __DIR__ . '/../App/Controllers/AdminController.php';
         $controller = new AdminController();
@@ -137,6 +137,17 @@ switch ($route) {
         require_once __DIR__ . '/../App/Controllers/AdminController.php';
         $controller = new AdminController();
         $controller->eliminarPelicula();
+        break;
+
+    case 'editar-pelicula-form':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->editarPeliculaForm();
+        break;
+    case 'editar-pelicula':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->editarPelicula();
         break;
 
     case 'eliminar-genero':
