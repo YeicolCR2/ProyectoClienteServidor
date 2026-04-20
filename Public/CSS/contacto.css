@@ -93,68 +93,83 @@ body {
     box-shadow: 0 0 15px rgba(255, 0, 200, 0.35);
 }
 
-.page-container {
+.container {
     max-width: 980px;
     margin: 45px auto 0;
     padding: 0 20px 50px;
 }
 
-.page-intro {
+.page-title {
+    font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
+    color: #00eaff;
+    text-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
 }
 
-.page-intro h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.page-intro p {
-    color: #b8c1ec;
-    font-size: 1rem;
-}
-
-.cards-grid {
+.contacto-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.contacto-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
-.mini-card {
-    background: rgba(0, 0, 0, 0.50);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 16px;
-    padding: 22px 20px;
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 234, 255, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
     transition: 0.3s ease;
 }
 
-.mini-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 16px rgba(122, 60, 255, 0.18);
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 234, 255, 0.2);
 }
 
-.mini-card h2 {
-    font-size: 1.6rem;
-    margin-bottom: 14px;
-    border-left: 4px solid #00eaff;
-    padding-left: 10px;
-}
-
-.mini-card p {
-    color: #f1f1f1;
-    line-height: 1.6;
-    margin-bottom: 16px;
-    font-size: 0.97rem;
-}
-
-.mini-card a {
-    text-decoration: none;
-    color: #7a7dff;
-    font-weight: bold;
-}
-
-.mini-card a:hover {
+.info-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
     color: #00eaff;
 }
 
+.info-card p {
+    line-height: 1.6;
+    color: #e5e5e5;
+}
+
+.social-card .instagram-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #f77737);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+.social-card .instagram-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(131, 58, 180, 0.5);
+}
+
+.main-footer {
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid #00eaff;
+    padding: 20px 0;
+    text-align: center;
+    color: #e5e5e5;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}

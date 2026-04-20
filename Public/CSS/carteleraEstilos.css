@@ -1,0 +1,155 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* FONDO GENERAL */
+.cartelera-page {
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at top, rgba(0, 255, 255, 0.07), transparent 20%),
+        radial-gradient(circle at right, rgba(162, 0, 255, 0.06), transparent 18%),
+        #03081b;
+    color: white;
+    min-height: 100vh;
+}
+
+/* HEADER */
+.main-header {
+    width: 100%;
+    padding: 22px 50px;
+    border-bottom: 2px solid #00eaff;
+    box-shadow: 0 0 18px rgba(0, 234, 255, 0.28);
+    background: rgba(0, 0, 0, 0.70);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #29d8ff;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: #e5e5e5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-nav ul li a.active,
+.main-nav ul li a:hover {
+    color: #00eaff;
+    border-bottom: 2px solid #7a3cff;
+}
+
+/* USUARIO */
+.user-menu {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.user-pill {
+    padding: 8px 16px;
+    border: 1px solid #00eaff;
+    border-radius: 20px;
+}
+
+.btn-logout {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #ff00c8;
+    color: #ff00c8;
+    text-decoration: none;
+}
+
+.btn-logout:hover {
+    background: #ff00c8;
+    color: white;
+}
+
+/* CONTENIDO */
+.cartelera-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #b8c1ec;
+}
+
+/* GRID */
+.cartelera-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* TARJETAS */
+.pelicula-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #00eaff;
+    border-radius: 15px;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.pelicula-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(122, 60, 255, 0.3);
+}
+
+.pelicula-card h2 {
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.pelicula-card p {
+    margin-bottom: 8px;
+}
+
+/* BOTÓN */
+.btn-reservar {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #35d3ff, #8a2cff);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-reservar:hover {
+    opacity: 0.9;
+}
+
+/* TEXTO VACÍO */
+.no-peliculas {
+    text-align: center;
+}

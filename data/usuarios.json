@@ -56,31 +56,10 @@
         "rol": "cliente"
     },
     {
-        "id": 9,
-        "nombre": "Gustavo Gonz\u00e1lez Espinoza",
-        "correo": "espinoza45@gmail.com",
-        "password": "$2y$10$gx\/V47oUcqkJn5BvXv4ZWumXNLUFgmqHRPFJScFOIB8fYGORxdYCm",
-        "rol": "cliente"
-    },
-    {
-        "id": 10,
-        "nombre": "Samuel",
-        "correo": "samu90@gmail.com",
-        "password": "$2y$10$4r3Zy7lGBEuuvXi9qt4aI.pmjusqFnO77V4oxF.5xLceMGZctdCDK",
-        "rol": "cliente"
-    },
-    {
-        "id": 11,
-        "nombre": "Juanito Mora Porras",
-        "correo": "santamaria32@gmail.com",
-        "password": "$2y$10$gxmhOuK\/YNo2pLPY7wk9R.91\/5xG.XUBsriZcOR8zIHiwGJxWLhkC",
-        "rol": "cliente"
-    },
-    {
-        "id": 12,
-        "nombre": "Alex",
-        "correo": "alex66@gmail.com",
-        "password": "$2y$10$xk.bM.MtR.oelRUARXixIeYdNTbu1kkqmXpEc1NW5QYfITaUAnMZa",
+        "id": 6,
+        "nombre": "Alejandro Montero",
+        "correo": "alejandromonteror@gmail.com",
+        "password": "$2y$10$\/xzUwgmaib7WIBIKPcmWZ.RgVFamVjjFFt2IZHFF3iZvzsYW5BvxC",
         "rol": "cliente"
     }
 ]
