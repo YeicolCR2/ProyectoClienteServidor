@@ -100,7 +100,7 @@ $ocupados = $ocupados ?? [];
 
 <script>
 let asientoSeleccionado = null;
-let funcionId = <?php echo $id_funcion; ?>;
+let funcionId = <?php echo isset($id_funcion) ? json_encode($id_funcion) : 'null'; ?>;
 
 function seleccionarAsiento(elemento) {
 
@@ -123,10 +123,13 @@ function confirmarReserva() {
         return;
     }
 
-    window.location.href =
-        "/public/index.php?route=guardar_reserva&id=" +
-        funcionId +
-        "&asiento=" + asientoSeleccionado;
+    if (funcionId === null) {
+        alert("Error: función inválida. Recarga la página e intenta de nuevo.");
+        return;
+    }
+
+    const url = "/public/index.php?route=guardar_reserva&id=" + encodeURIComponent(funcionId) + "&asiento=" + encodeURIComponent(asientoSeleccionado);
+    window.location.href = url;
 }
 </script>
 
