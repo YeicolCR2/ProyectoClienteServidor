@@ -55,56 +55,36 @@ if (!isset($_SESSION['usuario'])) {
         </div>
     </header>
 
-    <main class="cartelera-container">
+    <main style="padding:40px;">
 
-        <h1 class="page-title">🎬 CARTELERA</h1>
-        <p class="page-subtitle">
-            Descubre las películas disponibles y reserva tu asiento.
-        </p>
+        <h1 style="text-align:center;">🎬 CARTELERA</h1>
 
         <?php if (isset($peliculas) && count($peliculas) > 0): ?>
+            <?php foreach ($peliculas as $pelicula): ?>
+                <div class="pelicula-card">
 
-            <div class="cartelera-grid">
+                    <img src="/public/pic/<?php echo htmlspecialchars($pelicula['imagen'] ?? 'default.jpg'); ?>"
+                        alt="<?php echo htmlspecialchars($pelicula['titulo']); ?>"
+                        style="width:200px; height:auto;">
 
-                <?php foreach ($peliculas as $pelicula): ?>
+                    <h3><?php echo htmlspecialchars($pelicula['titulo']); ?></h3>
 
-                    <div class="pelicula-card">
+                    <p>Duración: <?php echo $pelicula['duracion']; ?> min</p>
+                    <p><?php echo htmlspecialchars($pelicula['descripcion']); ?></p>
+                    <p>Estreno: <?php echo $pelicula['fecha_estreno']; ?></p>
 
-                        <h2><?php echo $pelicula['titulo']; ?></h2>
-
-                        <p>
-                            <strong>Duración:</strong>
-                            <?php echo $pelicula['duracion']; ?> min
-                        </p>
-
-                        <p>
-                            <strong>Descripción:</strong>
-                            <?php echo $pelicula['descripcion']; ?>
-                        </p>
-
-                        <p>
-                            <strong>Estreno:</strong>
-                            <?php echo $pelicula['fecha_estreno']; ?>
-                        </p>
-
-                        <div class="pelicula-actions">
-                            <a href="/public/index.php?route=asientos&id=<?php echo urlencode($pelicula['id_pelicula']); ?>"
-                                class="btn-reservar">
-                                🎟 Seleccionar Asiento
-                            </a>
-                        </div>
-
+                    <div class="pelicula-actions">
+                        <a href="/public/index.php?route=asientos&id=<?php echo $pelicula['id_funcion']; ?>">
+                            Seleccionar asiento
+                        </a>
                     </div>
 
-                <?php endforeach; ?>
-
-            </div>
+                </div>
+            <?php endforeach; ?>
 
         <?php else: ?>
 
-            <p class="no-peliculas">
-                No hay películas en cartelera
-            </p>
+            <p style="text-align:center;">No hay películas en cartelera</p>
 
         <?php endif; ?>
 

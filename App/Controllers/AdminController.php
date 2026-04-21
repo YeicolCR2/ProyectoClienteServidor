@@ -49,14 +49,14 @@ class AdminController
         }
 
         $directorio = __DIR__ . '/../../Public/PIC/';
-        
+
         // Crear directorio si no existe
         if (!is_dir($directorio)) {
             mkdir($directorio, 0755, true);
         }
 
         $extension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
-        
+
         // Validar tipos permitidos
         $tiposPermitidos = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
         if (!in_array($extension, $tiposPermitidos)) {
@@ -225,6 +225,168 @@ class AdminController
             exit;
         }
     }
+    // ------------------------------------------------------------
+    // Edición de cine
+    // ------------------------------------------------------------
+    public function editarCineForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $cine = $this->adminModel->getCineById($id);
+
+        require_once __DIR__ . '/../Views/admin/editar-cine.php';
+    }
+
+    public function actualizarCine()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_cine'];
+            $nombre = $_POST['nombre'];
+            $direccion = $_POST['direccion'];
+            $ciudad = $_POST['ciudad'];
+
+            $this->adminModel->updateCine($id, $nombre, $direccion, $ciudad);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+
+    // ------------------------------------------------------------
+    // Edición de sala
+    // ------------------------------------------------------------
+    public function editarSalaForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $sala = $this->adminModel->getSalaById($id);
+        $cines = $this->adminModel->getCines();
+
+        require_once __DIR__ . '/../Views/admin/editar-sala.php';
+    }
+
+    public function actualizarSala()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_sala'];
+            $numero = $_POST['numero'];
+            $tipo = $_POST['tipo'];
+            $id_cine = $_POST['id_cine'];
+
+            $this->adminModel->updateSala($id, $numero, $tipo, $id_cine);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+    // ------------------------------------------------------------
+    // Edición de genero
+    // ------------------------------------------------------------
+    public function editarGeneroForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin-dashboard");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $genero = $this->adminModel->getGeneroById($id);
+        $peliculas = $this->adminModel->getPeliculas();
+
+        require_once __DIR__ . '/../Views/admin/editar-genero.php';
+    }
+
+    public function actualizarGenero()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_genero'];
+            $nombre = $_POST['nombre'];
+            $id_pelicula = $_POST['id_pelicula'];
+
+            $this->adminModel->updateGenero($id, $nombre, $id_pelicula);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+
+    // ------------------------------------------------------------
+    // Edición de funcion
+    // ------------------------------------------------------------
+    public function editarFuncionForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $funcion = $this->adminModel->getFuncionById($id);
+        $peliculas = $this->adminModel->getPeliculas();
+        $salas = $this->adminModel->getSalas();
+
+        require_once __DIR__ . '/../Views/admin/editar-funcion.php';
+    }
+
+    public function actualizarFuncion()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_funcion'];
+            $fecha = $_POST['fecha'];
+            $hora = $_POST['hora'];
+            $precio = $_POST['precio'];
+            $id_pelicula = $_POST['id_pelicula'];
+            $id_sala = $_POST['id_sala'];
+
+            $this->adminModel->updateFuncion($id, $fecha, $hora, $precio, $id_pelicula, $id_sala);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+    // ------------------------------------------------------------
+    // Edición de asiento
+    // ------------------------------------------------------------
+    public function editarAsientoForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $asiento = $this->adminModel->getAsientoById($id);
+        $salas = $this->adminModel->getSalas();
+
+        require_once __DIR__ . '/../Views/admin/editar-asiento.php';
+    }
+
+    public function actualizarAsiento()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_asiento'];
+            $fila = $_POST['fila'];
+            $numero = $_POST['numero'];
+            $id_sala = $_POST['id_sala'];
+
+            $this->adminModel->updateAsiento($id, $fila, $numero, $id_sala);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+
+
+
+
 
     // ------------------------------------------------------------
     // Métodos de eliminación

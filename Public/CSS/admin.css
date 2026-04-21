@@ -328,8 +328,27 @@ body {
 .admin-table tr:hover {
     background: rgba(255, 255, 255, 0.03);
 }
+
 .admin-alert.error {
     background: #7f1d1d;
     color: #fff;
     border-left: 4px solid #ef4444;
+}
+
+.btn-edit {
+    background: linear-gradient(90deg, #00eaff, #38d9ff);
+    color: #050816;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 234, 255, 0.4);
+}
+
+.btn-edit:hover {
+    background: linear-gradient(90deg, #00c8d7, #1fbad6);
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.7);
+    transform: translateY(-1px);
 }
