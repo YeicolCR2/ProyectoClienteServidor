@@ -127,7 +127,8 @@ function procesarPago() {
     // 🔥 ENVÍA AL BACKEND (MVC REAL)
     window.location.href =
         "/public/index.php?route=reserva&id=" +
-        datosReserva.funcionId +
+        datosReserva.peliculaId +
+        "&funcion=" + datosReserva.funcionId +
         "&asiento=" + datosReserva.asiento;
 }
 </script>

@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../Models/Admin.php';
 
 class AdminController
@@ -13,12 +12,18 @@ class AdminController
 
     private function validarAdmin()
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] != 1) {
             header("Location: /public/index.php?route=home");
             exit;
         }
     }
 
+    // ------------------------------------------------------------
+    // Dashboard principal
+    // ------------------------------------------------------------
     public function dashboard()
     {
         $this->validarAdmin();
@@ -33,14 +38,58 @@ class AdminController
         require_once __DIR__ . '/../Views/admin/dashboard.php';
     }
 
+    // ------------------------------------------------------------
+    // Procesamiento de imagen (privado)
+    // ------------------------------------------------------------
+    private function procesarImagen($archivo)
+    {
+        // Si no se subió archivo o hubo error
+        if (!$archivo || $archivo['error'] !== UPLOAD_ERR_OK) {
+            return null;
+        }
+
+        $directorio = __DIR__ . '/../../Public/PIC/';
+
+        // Crear directorio si no existe
+        if (!is_dir($directorio)) {
+            mkdir($directorio, 0755, true);
+        }
+
+        $extension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
+
+        // Validar tipos permitidos
+        $tiposPermitidos = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        if (!in_array($extension, $tiposPermitidos)) {
+            return null;
+        }
+
+        // Validar tamaño (por ejemplo, máximo 5MB)
+        if ($archivo['size'] > 5 * 1024 * 1024) {
+            return null;
+        }
+
+        // Generar nombre único
+        $nombreUnico = uniqid('pelicula_') . '.' . $extension;
+        $rutaDestino = $directorio . $nombreUnico;
+
+        if (move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
+            return $nombreUnico;
+        }
+
+        return null;
+    }
+
+    // ------------------------------------------------------------
+    // Métodos de inserción (GUARDAR)
+    // ------------------------------------------------------------
     public function guardarCine()
     {
         $this->validarAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = trim($_POST['nombre']);
-            $direccion = trim($_POST['direccion']);
-            $ciudad = trim($_POST['ciudad']);
+            $nombre = trim($_POST['nombre'] ?? '');
+            $direccion = trim($_POST['direccion'] ?? '');
+            $ciudad = trim($_POST['ciudad'] ?? '');
 
             $this->adminModel->insertCine($nombre, $direccion, $ciudad);
             header("Location: /public/index.php?route=admin&success=1");
@@ -53,9 +102,9 @@ class AdminController
         $this->validarAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $numero = trim($_POST['numero']);
-            $tipo = trim($_POST['tipo']);
-            $id_cine = trim($_POST['id_cine']);
+            $numero = trim($_POST['numero'] ?? '');
+            $tipo = trim($_POST['tipo'] ?? '');
+            $id_cine = trim($_POST['id_cine'] ?? '');
 
             $this->adminModel->insertSala($numero, $tipo, $id_cine);
             header("Location: /public/index.php?route=admin&success=1");
@@ -68,13 +117,16 @@ class AdminController
         $this->validarAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $titulo = trim($_POST['titulo']);
-            $duracion = trim($_POST['duracion']);
-            $descripcion = trim($_POST['descripcion']);
-            $fecha_estreno = trim($_POST['fecha_estreno']);
-            $estado = trim($_POST['estado']);
+            $titulo = trim($_POST['titulo'] ?? '');
+            $duracion = trim($_POST['duracion'] ?? '');
+            $descripcion = trim($_POST['descripcion'] ?? '');
+            $fecha_estreno = trim($_POST['fecha_estreno'] ?? '');
+            $estado = trim($_POST['estado'] ?? '');
 
-            $this->adminModel->insertPelicula($titulo, $duracion, $descripcion, $fecha_estreno, $estado);
+            // Procesar imagen (si no se sube, será null y el modelo usará default.jpg)
+            $imagen = $this->procesarImagen($_FILES['imagen'] ?? null);
+
+            $this->adminModel->insertPelicula($titulo, $duracion, $descripcion, $fecha_estreno, $estado, $imagen);
             header("Location: /public/index.php?route=admin&success=1");
             exit;
         }
@@ -85,8 +137,8 @@ class AdminController
         $this->validarAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = trim($_POST['nombre']);
-            $id_pelicula = trim($_POST['id_pelicula']);
+            $nombre = trim($_POST['nombre'] ?? '');
+            $id_pelicula = trim($_POST['id_pelicula'] ?? '');
 
             $this->adminModel->insertGenero($nombre, $id_pelicula);
             header("Location: /public/index.php?route=admin&success=1");
@@ -99,11 +151,11 @@ class AdminController
         $this->validarAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $fecha = trim($_POST['fecha']);
-            $hora = trim($_POST['hora']);
-            $precio = trim($_POST['precio']);
-            $id_pelicula = trim($_POST['id_pelicula']);
-            $id_sala = trim($_POST['id_sala']);
+            $fecha = trim($_POST['fecha'] ?? '');
+            $hora = trim($_POST['hora'] ?? '');
+            $precio = trim($_POST['precio'] ?? '');
+            $id_pelicula = trim($_POST['id_pelicula'] ?? '');
+            $id_sala = trim($_POST['id_sala'] ?? '');
 
             $this->adminModel->insertFuncion($fecha, $hora, $precio, $id_pelicula, $id_sala);
             header("Location: /public/index.php?route=admin&success=1");
@@ -116,9 +168,9 @@ class AdminController
         $this->validarAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $fila = trim($_POST['fila']);
-            $numero = trim($_POST['numero']);
-            $id_sala = trim($_POST['id_sala']);
+            $fila = trim($_POST['fila'] ?? '');
+            $numero = trim($_POST['numero'] ?? '');
+            $id_sala = trim($_POST['id_sala'] ?? '');
 
             $this->adminModel->insertAsiento($fila, $numero, $id_sala);
             header("Location: /public/index.php?route=admin&success=1");
@@ -126,6 +178,219 @@ class AdminController
         }
     }
 
+    // ------------------------------------------------------------
+    // Edición de película
+    // ------------------------------------------------------------
+    public function editarPeliculaForm()
+    {
+        $this->validarAdmin();
+
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $pelicula = $this->adminModel->getPeliculaById($id);
+        if (!$pelicula) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        require_once __DIR__ . '/../Views/admin/editar-pelicula.php';
+    }
+
+    public function editarPelicula()
+    {
+        $this->validarAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_pelicula'] ?? 0;
+            $titulo = trim($_POST['titulo'] ?? '');
+            $duracion = trim($_POST['duracion'] ?? '');
+            $descripcion = trim($_POST['descripcion'] ?? '');
+            $fecha_estreno = trim($_POST['fecha_estreno'] ?? '');
+            $estado = trim($_POST['estado'] ?? '');
+
+            // Procesar nueva imagen solo si se subió un archivo
+            $imagen = $this->procesarImagen($_FILES['imagen'] ?? null);
+
+            $ok = $this->adminModel->updatePelicula($id, $titulo, $duracion, $descripcion, $fecha_estreno, $estado, $imagen);
+
+            if ($ok) {
+                header("Location: /public/index.php?route=admin&updated=1");
+            } else {
+                header("Location: /public/index.php?route=admin&error=1");
+            }
+            exit;
+        }
+    }
+    // ------------------------------------------------------------
+    // Edición de cine
+    // ------------------------------------------------------------
+    public function editarCineForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $cine = $this->adminModel->getCineById($id);
+
+        require_once __DIR__ . '/../Views/admin/editar-cine.php';
+    }
+
+    public function actualizarCine()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_cine'];
+            $nombre = $_POST['nombre'];
+            $direccion = $_POST['direccion'];
+            $ciudad = $_POST['ciudad'];
+
+            $this->adminModel->updateCine($id, $nombre, $direccion, $ciudad);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+
+    // ------------------------------------------------------------
+    // Edición de sala
+    // ------------------------------------------------------------
+    public function editarSalaForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $sala = $this->adminModel->getSalaById($id);
+        $cines = $this->adminModel->getCines();
+
+        require_once __DIR__ . '/../Views/admin/editar-sala.php';
+    }
+
+    public function actualizarSala()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_sala'];
+            $numero = $_POST['numero'];
+            $tipo = $_POST['tipo'];
+            $id_cine = $_POST['id_cine'];
+
+            $this->adminModel->updateSala($id, $numero, $tipo, $id_cine);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+    // ------------------------------------------------------------
+    // Edición de genero
+    // ------------------------------------------------------------
+    public function editarGeneroForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin-dashboard");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $genero = $this->adminModel->getGeneroById($id);
+        $peliculas = $this->adminModel->getPeliculas();
+
+        require_once __DIR__ . '/../Views/admin/editar-genero.php';
+    }
+
+    public function actualizarGenero()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_genero'];
+            $nombre = $_POST['nombre'];
+            $id_pelicula = $_POST['id_pelicula'];
+
+            $this->adminModel->updateGenero($id, $nombre, $id_pelicula);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+
+    // ------------------------------------------------------------
+    // Edición de funcion
+    // ------------------------------------------------------------
+    public function editarFuncionForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $funcion = $this->adminModel->getFuncionById($id);
+        $peliculas = $this->adminModel->getPeliculas();
+        $salas = $this->adminModel->getSalas();
+
+        require_once __DIR__ . '/../Views/admin/editar-funcion.php';
+    }
+
+    public function actualizarFuncion()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_funcion'];
+            $fecha = $_POST['fecha'];
+            $hora = $_POST['hora'];
+            $precio = $_POST['precio'];
+            $id_pelicula = $_POST['id_pelicula'];
+            $id_sala = $_POST['id_sala'];
+
+            $this->adminModel->updateFuncion($id, $fecha, $hora, $precio, $id_pelicula, $id_sala);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+    // ------------------------------------------------------------
+    // Edición de asiento
+    // ------------------------------------------------------------
+    public function editarAsientoForm()
+    {
+        if (!isset($_GET['id'])) {
+            header("Location: /public/index.php?route=admin");
+            exit;
+        }
+
+        $id = $_GET['id'];
+        $asiento = $this->adminModel->getAsientoById($id);
+        $salas = $this->adminModel->getSalas();
+
+        require_once __DIR__ . '/../Views/admin/editar-asiento.php';
+    }
+
+    public function actualizarAsiento()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_asiento'];
+            $fila = $_POST['fila'];
+            $numero = $_POST['numero'];
+            $id_sala = $_POST['id_sala'];
+
+            $this->adminModel->updateAsiento($id, $fila, $numero, $id_sala);
+        }
+
+        header("Location: /public/index.php?route=admin");
+        exit;
+    }
+
+
+
+
+
+    // ------------------------------------------------------------
+    // Métodos de eliminación
+    // ------------------------------------------------------------
     public function eliminarCine()
     {
         $this->validarAdmin();
@@ -135,14 +400,9 @@ class AdminController
 
             if ($id) {
                 $ok = $this->adminModel->deleteCine($id);
-
-                if ($ok) {
-                    header("Location: /public/index.php?route=admin&deleted=1");
-                    exit;
-                } else {
-                    header("Location: /public/index.php?route=admin&error=1");
-                    exit;
-                }
+                $param = $ok ? 'deleted=1' : 'error=1';
+                header("Location: /public/index.php?route=admin&$param");
+                exit;
             }
         }
 
@@ -159,20 +419,16 @@ class AdminController
 
             if ($id) {
                 $ok = $this->adminModel->deleteSala($id);
-
-                if ($ok) {
-                    header("Location: /public/index.php?route=admin&deleted=1");
-                    exit;
-                } else {
-                    header("Location: /public/index.php?route=admin&error=1");
-                    exit;
-                }
+                $param = $ok ? 'deleted=1' : 'error=1';
+                header("Location: /public/index.php?route=admin&$param");
+                exit;
             }
         }
 
         header("Location: /public/index.php?route=admin");
         exit;
     }
+
     public function eliminarPelicula()
     {
         $this->validarAdmin();
@@ -182,20 +438,16 @@ class AdminController
 
             if ($id) {
                 $ok = $this->adminModel->deletePelicula($id);
-
-                if ($ok) {
-                    header("Location: /public/index.php?route=admin&deleted=1");
-                    exit;
-                } else {
-                    header("Location: /public/index.php?route=admin&error=1");
-                    exit;
-                }
+                $param = $ok ? 'deleted=1' : 'error=1';
+                header("Location: /public/index.php?route=admin&$param");
+                exit;
             }
         }
 
         header("Location: /public/index.php?route=admin");
         exit;
     }
+
     public function eliminarGenero()
     {
         $this->validarAdmin();
@@ -205,14 +457,9 @@ class AdminController
 
             if ($id) {
                 $ok = $this->adminModel->deleteGenero($id);
-
-                if ($ok) {
-                    header("Location: /public/index.php?route=admin&deleted=1");
-                    exit;
-                } else {
-                    header("Location: /public/index.php?route=admin&error=1");
-                    exit;
-                }
+                $param = $ok ? 'deleted=1' : 'error=1';
+                header("Location: /public/index.php?route=admin&$param");
+                exit;
             }
         }
 
@@ -229,20 +476,16 @@ class AdminController
 
             if ($id) {
                 $ok = $this->adminModel->deleteFuncion($id);
-
-                if ($ok) {
-                    header("Location: /public/index.php?route=admin&deleted=1");
-                    exit;
-                } else {
-                    header("Location: /public/index.php?route=admin&error=1");
-                    exit;
-                }
+                $param = $ok ? 'deleted=1' : 'error=1';
+                header("Location: /public/index.php?route=admin&$param");
+                exit;
             }
         }
 
         header("Location: /public/index.php?route=admin");
         exit;
     }
+
     public function eliminarAsiento()
     {
         $this->validarAdmin();
@@ -252,14 +495,9 @@ class AdminController
 
             if ($id) {
                 $ok = $this->adminModel->deleteAsiento($id);
-
-                if ($ok) {
-                    header("Location: /public/index.php?route=admin&deleted=1");
-                    exit;
-                } else {
-                    header("Location: /public/index.php?route=admin&error=1");
-                    exit;
-                }
+                $param = $ok ? 'deleted=1' : 'error=1';
+                header("Location: /public/index.php?route=admin&$param");
+                exit;
             }
         }
 

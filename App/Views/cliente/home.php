@@ -76,6 +76,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
         </section>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         <!-- Próximos Estrenos con Carrusel -->
         <section class="section premieres-section">
@@ -170,6 +171,8 @@ if (!isset($_SESSION['usuario'])) {
         </section>
 =======
 >>>>>>> Alejandro
+=======
+>>>>>>> main
     </main>
 
 </body>

@@ -2,10 +2,11 @@
 
 require_once __DIR__ . '/../Models/Reserva.php';
 
-class ReservaController {
+class ReservaController
+{
 
-    // 🔥 GUARDAR RESERVA SIMPLE (compatibilidad)
-    public function guardar() {
+    public function guardar()
+    {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -17,15 +18,15 @@ class ReservaController {
         }
 
         if (!isset($_GET['id'])) {
-            exit("Película no especificada");
+            exit("Función no especificada");
         }
 
-        $id_pelicula = $_GET['id'];
+        $id_funcion = $_GET['id'];
         $id_usuario = $_SESSION['usuario']['id'];
 
         $reserva = new Reserva();
 
-        if ($reserva->crearReserva($id_usuario, $id_pelicula)) {
+        if ($reserva->crearReserva($id_usuario, $id_funcion)) {
             header("Location: /public/index.php?route=reservas");
             exit;
         } else {
@@ -33,8 +34,8 @@ class ReservaController {
         }
     }
 
-    // 🔥 MOSTRAR ASIENTOS
-    public function seleccionarAsiento() {
+    public function seleccionarAsiento()
+    {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -53,14 +54,16 @@ class ReservaController {
 
         $reserva = new Reserva();
 
-        // Obtener asientos ocupados
+        $id_sala = $reserva->obtenerSalaPorFuncion($id_funcion);
+        $asientos = $reserva->obtenerAsientosPorSala($id_sala);
         $ocupados = $reserva->obtenerAsientosOcupados($id_funcion);
 
-        require __DIR__ . '/../Views/cliente/asientos.php';
+
+        require_once __DIR__ . '/../Views/cliente/asientos.php';
     }
 
-    // 🔥 GUARDAR RESERVA CON ASIENTO
-    public function guardarConAsiento() {
+    public function guardarConAsiento()
+    {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -89,8 +92,8 @@ class ReservaController {
         }
     }
 
-    // 🔥 LISTAR RESERVAS
-    public function index() {
+    public function index()
+    {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -109,8 +112,8 @@ class ReservaController {
         require __DIR__ . '/../Views/cliente/mis-reservas.php';
     }
 
-    // 🔥 CANCELAR RESERVA (LO QUE TE FALTABA)
-    public function cancelar() {
+    public function cancelar()
+    {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();

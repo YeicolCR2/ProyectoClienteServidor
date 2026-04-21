@@ -1,9 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['usuario'])) {
-    header("Location: /app/views/auth/login.php");
-    exit;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,7 +20,7 @@ if (!isset($_SESSION['usuario'])) {
 <body>
     <header class="main-header">
         <div class="header-container">
-            <a href="/app/views/cliente/home.php" class="logo">🎬 Cine U XD</a>
+            <a href="/app/views/cliente/home.php" class="logo">Cine U XD</a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="/app/views/cliente/home.php">Inicio</a></li>
@@ -28,6 +28,9 @@ if (!isset($_SESSION['usuario'])) {
                     <li><a href="/app/views/cliente/cines.php">Cines</a></li>
                     <li><a href="/app/views/cliente/contacto.php" class="active">Contacto</a></li>
                     <li><a href="/app/views/cliente/mis-reservas.php">Mis Reservas</a></li>
+                    <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] == 1): ?>
+                        <li><a href="/public/index.php?route=admin">ADMIN</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <div class="user-menu">

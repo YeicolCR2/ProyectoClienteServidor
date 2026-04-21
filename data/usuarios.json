@@ -57,6 +57,7 @@
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "id": 9,
         "nombre": "Gustavo Gonz\u00e1lez Espinoza",
         "correo": "espinoza45@gmail.com",
@@ -90,11 +91,16 @@
         "correo": "montero34@gmail.com",
         "password": "$2y$10$T2a6KrLY3VBpzU0SrMsbOe062s8BzEa7MKrnNofRmn8Z.GecQTbmO",
 =======
+=======
+>>>>>>> main
         "id": 6,
         "nombre": "Alejandro Montero",
         "correo": "alejandromonteror@gmail.com",
         "password": "$2y$10$\/xzUwgmaib7WIBIKPcmWZ.RgVFamVjjFFt2IZHFF3iZvzsYW5BvxC",
+<<<<<<< HEAD
 >>>>>>> Alejandro
+=======
+>>>>>>> main
         "rol": "cliente"
     }
 ]

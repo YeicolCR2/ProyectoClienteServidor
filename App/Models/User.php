@@ -8,6 +8,7 @@ class User {
 
     public function __construct() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if(session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -55,6 +56,8 @@ class User {
                 return $usuario;
             }
 =======
+=======
+>>>>>>> main
         $database = new Database();
         $this->conn = $database->conectar();
     }
@@ -70,13 +73,17 @@ class User {
 
         if ($usuario && password_verify($password, $usuario['password'])) {
             return $usuario;
+<<<<<<< HEAD
 >>>>>>> Alejandro
+=======
+>>>>>>> main
         }
 
         return false;
     }
 
     public function emailExiste($correo) {
+<<<<<<< HEAD
 <<<<<<< HEAD
         $usuarios = $this->getUsuarios();
         
@@ -91,6 +98,8 @@ class User {
         }
         return false;
 =======
+=======
+>>>>>>> main
 
         $sql = "SELECT * FROM Usuario WHERE correo = :correo";
         $stmt = $this->conn->prepare($sql);
@@ -98,6 +107,7 @@ class User {
         $stmt->execute();
 
         return $stmt->fetch() ? true : false;
+<<<<<<< HEAD
 >>>>>>> Alejandro
     }
 
@@ -134,6 +144,11 @@ class User {
         
         return true;
 =======
+=======
+    }
+
+    public function register($nombre, $correo, $password) {
+>>>>>>> main
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -147,6 +162,9 @@ class User {
         $stmt->bindParam(':password', $passwordHash);
 
         return $stmt->execute();
+<<<<<<< HEAD
 >>>>>>> Alejandro
+=======
+>>>>>>> main
     }
 }

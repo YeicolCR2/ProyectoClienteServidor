@@ -100,6 +100,7 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ================= HERO SLIDER ================= */
 .hero-slider {
     position: relative;
@@ -791,6 +792,8 @@ body {
         max-width: 100%;
     }
 =======
+=======
+>>>>>>> main
 .page-intro {
     text-align: center;
     margin-bottom: 35px;
@@ -848,5 +851,10 @@ body {
 
 .mini-card a:hover {
     color: #00eaff;
+<<<<<<< HEAD
 >>>>>>> Alejandro
 }
+=======
+}
+
+>>>>>>> main

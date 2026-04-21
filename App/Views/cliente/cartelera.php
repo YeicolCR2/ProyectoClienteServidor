@@ -14,46 +14,68 @@ if (!isset($_SESSION['usuario'])) {
 <head>
     <meta charset="UTF-8">
     <title>Cartelera - Cine U XD</title>
-    <link rel="stylesheet" href="/public/css/base.css">
-    <link rel="stylesheet" href="/public/css/cliente.css">
+
+    <!-- SOLO ESTE CSS PARA EVITAR CONFLICTOS -->
+    <link rel="stylesheet" href="/public/css/carteleraEstilos.css">
 </head>
+<<<<<<< HEAD
 <body>
+=======
 
-<header class="main-header">
-    <div class="header-container">
+<body class="cartelera-page">
 
-        <a href="/public/index.php?route=home" class="logo">
-            CINE U XD
-        </a>
+    <header class="main-header">
+        <div class="header-container">
 
-        <nav class="main-nav">
-            <ul>
-                <li><a href="/public/index.php?route=home">INICIO</a></li>
-                <li><a href="/public/index.php?route=cartelera" class="active">CARTELERA</a></li>
-                <li><a href="/public/index.php?route=cines">CINES</a></li>
-                <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
-                <li><a href="/public/index.php?route=reservas">MIS RESERVAS</a></li>
-            </ul>
-        </nav>
+            <a href="/public/index.php?route=home" class="logo">
+                CINE U XD
+            </a>
 
-        <div class="user-menu">
-            <span>👤 <?php echo $_SESSION['usuario']['nombre']; ?></span>
-            <a href="/public/index.php?route=logout" class="btn-logout">CERRAR SESIÓN</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/public/index.php?route=home">INICIO</a></li>
+                    <li><a href="/public/index.php?route=cartelera" class="active">CARTELERA</a></li>
+                    <li><a href="/public/index.php?route=cines">CINES</a></li>
+                    <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
+                    <li><a href="/public/index.php?route=reservas">MIS RESERVAS</a></li>
+                    <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] == 1): ?>
+                        <li><a href="/public/index.php?route=admin">ADMIN</a></li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <span class="user-pill">
+                    👤 <?php echo $_SESSION['usuario']['nombre']; ?>
+                </span>
+>>>>>>> main
+
+                <a href="/public/index.php?route=logout" class="btn-logout">
+                    CERRAR SESIÓN
+                </a>
+            </div>
+
         </div>
+    </header>
 
-    </div>
-</header>
+    <main style="padding:40px;">
 
-<main style="padding:40px;">
+        <h1 style="text-align:center;">🎬 CARTELERA</h1>
 
-    <h1 style="text-align:center;">🎬 CARTELERA</h1>
+        <?php if (isset($peliculas) && count($peliculas) > 0): ?>
+            <?php foreach ($peliculas as $pelicula): ?>
+                <div class="pelicula-card">
 
-    <?php if (isset($peliculas) && count($peliculas) > 0): ?>
+                    <img src="/public/pic/<?php echo htmlspecialchars($pelicula['imagen'] ?? 'default.jpg'); ?>"
+                        alt="<?php echo htmlspecialchars($pelicula['titulo']); ?>"
+                        style="width:200px; height:auto;">
 
-        <?php foreach ($peliculas as $pelicula): ?>
+                    <h3><?php echo htmlspecialchars($pelicula['titulo']); ?></h3>
 
-            <div style="border:1px solid #ccc; margin:20px auto; padding:20px; max-width:600px; border-radius:10px;">
+                    <p>Duración: <?php echo $pelicula['duracion']; ?> min</p>
+                    <p><?php echo htmlspecialchars($pelicula['descripcion']); ?></p>
+                    <p>Estreno: <?php echo $pelicula['fecha_estreno']; ?></p>
 
+<<<<<<< HEAD
                 <h2><?php echo $pelicula['titulo']; ?></h2>
 
                 <p><strong>Duración:</strong> <?php echo $pelicula['duracion']; ?> min</p>
@@ -83,6 +105,24 @@ if (!isset($_SESSION['usuario'])) {
     <?php endif; ?>
 
 </main>
+=======
+                    <div class="pelicula-actions">
+                        <a href="/public/index.php?route=asientos&id=<?php echo $pelicula['id_funcion']; ?>">
+                            Seleccionar asiento
+                        </a>
+                    </div>
+
+                </div>
+            <?php endforeach; ?>
+
+        <?php else: ?>
+
+            <p style="text-align:center;">No hay películas en cartelera</p>
+
+        <?php endif; ?>
+
+    </main>
+>>>>>>> main
 
 </body>
 </html>
