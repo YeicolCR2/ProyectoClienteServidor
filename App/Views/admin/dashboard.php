@@ -68,14 +68,17 @@
                 </form>
             </div>
 
+            <!-- Película -->
             <div class="admin-card">
                 <h2>Registrar Película</h2>
-                <form class="admin-form" action="/public/index.php?route=guardar-pelicula" method="POST">
+                <form class="admin-form" action="/public/index.php?route=guardar-pelicula" method="POST" enctype="multipart/form-data">
                     <input type="text" name="titulo" placeholder="Título" required>
                     <input type="number" name="duracion" placeholder="Duración en minutos">
                     <textarea name="descripcion" placeholder="Descripción"></textarea>
                     <input type="date" name="fecha_estreno">
-                    <input type="text" name="estado" placeholder="Estado">
+                    <input type="text" name="estado" placeholder="Estado (cartelera / proximamente)">
+                    <label>Póster:</label>
+                    <input type="file" name="imagen" accept="image/*">
                     <button type="submit">Guardar Película</button>
                 </form>
             </div>
@@ -149,11 +152,11 @@
         <section class="admin-table-section">
             <div class="admin-table-card">
                 <h2>Películas Registradas</h2>
-
                 <table class="admin-table">
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Imagen</th>
                             <th>Título</th>
                             <th>Duración</th>
                             <th>Fecha Estreno</th>
@@ -165,12 +168,14 @@
                         <?php foreach ($peliculas as $pelicula): ?>
                             <tr>
                                 <td><?php echo $pelicula['id_pelicula']; ?></td>
+                                <td><img src="/Public/PIC/<?php echo htmlspecialchars($pelicula['imagen'] ?? 'default.jpg'); ?>" width="50"></td>
                                 <td><?php echo $pelicula['titulo']; ?></td>
                                 <td><?php echo $pelicula['duracion']; ?></td>
                                 <td><?php echo $pelicula['fecha_estreno']; ?></td>
                                 <td><?php echo $pelicula['estado']; ?></td>
                                 <td>
-                                    <form action="/public/index.php?route=eliminar-pelicula" method="POST" onsubmit="return confirm('¿Desea eliminar esta película?');">
+                                    <a href="/public/index.php?route=editar-pelicula-form&id=<?php echo $pelicula['id_pelicula']; ?>" class="btn-edit">Editar</a>
+                                    <form action="/public/index.php?route=eliminar-pelicula" method="POST" onsubmit="return confirm('¿Desea eliminar esta película?');" style="display:inline;">
                                         <input type="hidden" name="id_pelicula" value="<?php echo $pelicula['id_pelicula']; ?>">
                                         <button type="submit" class="btn-delete">Eliminar</button>
                                     </form>
@@ -179,7 +184,6 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-
             </div>
         </section>
         <section class="admin-table-section">
@@ -203,8 +207,12 @@
                                 <td><?php echo $cine['nombre']; ?></td>
                                 <td><?php echo $cine['direccion']; ?></td>
                                 <td><?php echo $cine['ciudad']; ?></td>
-                                <td>
-                                    <form action="/public/index.php?route=eliminar-cine" method="POST" onsubmit="return confirm('¿Desea eliminar este cine?');">
+                                <td class="acciones">
+                                    <a href="/public/index.php?route=editar-cine-form&id=<?= $cine['id_cine']; ?>" class="btn-edit">
+                                        Editar
+                                    </a>
+
+                                    <form action="/public/index.php?route=eliminar-cine" method="POST" onsubmit="return confirm('¿Desea eliminar este cine?');" style="display:inline;">
                                         <input type="hidden" name="id_cine" value="<?php echo $cine['id_cine']; ?>">
                                         <button type="submit" class="btn-delete">Eliminar</button>
                                     </form>
@@ -236,8 +244,12 @@
                                 <td><?php echo $sala['numero']; ?></td>
                                 <td><?php echo $sala['tipo']; ?></td>
                                 <td><?php echo $sala['cine_nombre']; ?></td>
-                                <td>
-                                    <form action="/public/index.php?route=eliminar-sala" method="POST" onsubmit="return confirm('¿Desea eliminar esta sala?');">
+                                <td class="acciones">
+                                    <a href="/public/index.php?route=editar-sala-form&id=<?= $sala['id_sala']; ?>" class="btn-edit">
+                                        Editar
+                                    </a>
+
+                                    <form action="/public/index.php?route=eliminar-sala" method="POST" onsubmit="return confirm('¿Desea eliminar esta sala?');" style="display:inline;">
                                         <input type="hidden" name="id_sala" value="<?php echo $sala['id_sala']; ?>">
                                         <button type="submit" class="btn-delete">Eliminar</button>
                                     </form>
@@ -267,8 +279,12 @@
                                 <td><?php echo $genero['id_genero']; ?></td>
                                 <td><?php echo $genero['nombre']; ?></td>
                                 <td><?php echo $genero['pelicula_titulo']; ?></td>
-                                <td>
-                                    <form action="/public/index.php?route=eliminar-genero" method="POST" onsubmit="return confirm('¿Desea eliminar este género?');">
+                                <td class="acciones">
+                                    <a href="/public/index.php?route=editar-genero-form&id=<?= $genero['id_genero']; ?>" class="btn-edit">
+                                        Editar
+                                    </a>
+
+                                    <form action="/public/index.php?route=eliminar-genero" method="POST" onsubmit="return confirm('¿Desea eliminar este género?');" style="display:inline;">
                                         <input type="hidden" name="id_genero" value="<?php echo $genero['id_genero']; ?>">
                                         <button type="submit" class="btn-delete">Eliminar</button>
                                     </form>
@@ -304,8 +320,12 @@
                                 <td><?php echo $funcion['precio']; ?></td>
                                 <td><?php echo $funcion['pelicula_titulo']; ?></td>
                                 <td><?php echo $funcion['sala_numero']; ?></td>
-                                <td>
-                                    <form action="/public/index.php?route=eliminar-funcion" method="POST" onsubmit="return confirm('¿Desea eliminar esta función?');">
+                                <td class="acciones">
+                                    <a href="/public/index.php?route=editar-funcion-form&id=<?= $funcion['id_funcion']; ?>" class="btn-edit">
+                                        Editar
+                                    </a>
+
+                                    <form action="/public/index.php?route=eliminar-funcion" method="POST" onsubmit="return confirm('¿Desea eliminar esta función?');" style="display:inline;">
                                         <input type="hidden" name="id_funcion" value="<?php echo $funcion['id_funcion']; ?>">
                                         <button type="submit" class="btn-delete">Eliminar</button>
                                     </form>
@@ -338,8 +358,12 @@
                                 <td><?php echo $asiento['fila']; ?></td>
                                 <td><?php echo $asiento['numero']; ?></td>
                                 <td><?php echo $asiento['sala_numero']; ?></td>
-                                <td>
-                                    <form action="/public/index.php?route=eliminar-asiento" method="POST" onsubmit="return confirm('¿Desea eliminar este asiento?');">
+                                <td class="acciones">
+                                    <a href="/public/index.php?route=editar-asiento-form&id=<?= $asiento['id_asiento']; ?>" class="btn-edit">
+                                        Editar
+                                    </a>
+
+                                    <form action="/public/index.php?route=eliminar-asiento" method="POST" onsubmit="return confirm('¿Desea eliminar este asiento?');" style="display:inline;">
                                         <input type="hidden" name="id_asiento" value="<?php echo $asiento['id_asiento']; ?>">
                                         <button type="submit" class="btn-delete">Eliminar</button>
                                     </form>
