@@ -14,6 +14,7 @@ $ocupados = $ocupados ?? [];
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Seleccionar Asientos</title>
@@ -74,64 +75,62 @@ $ocupados = $ocupados ?? [];
 
 <body>
 
-<h1 style="text-align:center;">🎟️ Selecciona tu asiento</h1>
+    <h1 style="text-align:center;">🎟️ Selecciona tu asiento</h1>
 
-<div class="pantalla">🎬 PANTALLA</div>
+    <div class="pantalla">🎬 PANTALLA</div>
 
-<div class="sala">
-    <?php
-    // Generamos 32 asientos (4 filas x 8)
-    for ($i = 1; $i <= 32; $i++):
-        $esOcupado = in_array($i, $ocupados);
-    ?>
-        <div 
-            class="asiento <?php echo $esOcupado ? 'ocupado' : 'disponible'; ?>"
-            data-id="<?php echo $i; ?>"
-            onclick="seleccionarAsiento(this)"
-        >
-            <?php echo $i; ?>
-        </div>
-    <?php endfor; ?>
-</div>
+    <div class="sala">
+        <?php foreach ($asientos as $asiento):
+            $esOcupado = in_array($asiento['id_asiento'], $ocupados);
+        ?>
+            <div
+                class="asiento <?php echo $esOcupado ? 'ocupado' : 'disponible'; ?>"
+                data-id="<?php echo $asiento['id_asiento']; ?>"
+                onclick="seleccionarAsiento(this)">
+                <?php echo $asiento['numero']; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
-<button class="btn-confirmar" onclick="confirmarReserva()">
-    Confirmar Reserva
-</button>
+    <button class="btn-confirmar" onclick="confirmarReserva()">
+        Confirmar Reserva
+    </button>
 
-<script>
-let asientoSeleccionado = null;
-let funcionId = <?php echo isset($id_funcion) ? json_encode($id_funcion) : 'null'; ?>;
+    <script>
+        let asientoSeleccionado = null;
+        let funcionId = <?php echo isset($id_funcion) ? json_encode($id_funcion) : 'null'; ?>;
 
-function seleccionarAsiento(elemento) {
+        function seleccionarAsiento(elemento) {
+            if (elemento.classList.contains('ocupado')) return;
 
-    if (elemento.classList.contains('ocupado')) return;
+            document.querySelectorAll('.asiento').forEach(a => {
+                a.classList.remove('seleccionado');
+            });
 
-    // limpiar selección previa
-    document.querySelectorAll('.asiento').forEach(a => {
-        a.classList.remove('seleccionado');
-    });
+            elemento.classList.add('seleccionado');
+            asientoSeleccionado = elemento.dataset.id;
+        }
 
-    elemento.classList.add('seleccionado');
+        function confirmarReserva() {
+            if (!asientoSeleccionado) {
+                alert("Selecciona un asiento");
+                return;
+            }
 
-    asientoSeleccionado = elemento.dataset.id;
-}
+            if (funcionId === null) {
+                alert("Error: función inválida");
+                return;
+            }
 
-function confirmarReserva() {
-
-    if (!asientoSeleccionado) {
-        alert("Selecciona un asiento");
-        return;
-    }
-
-    if (funcionId === null) {
-        alert("Error: función inválida. Recarga la página e intenta de nuevo.");
-        return;
-    }
-
-    const url = "/public/index.php?route=guardar_reserva&id=" + encodeURIComponent(funcionId) + "&asiento=" + encodeURIComponent(asientoSeleccionado);
-    window.location.href = url;
-}
-</script>
+            const url = "/public/index.php?route=guardar_reserva&id=" +
+                encodeURIComponent(funcionId) +
+                "&asiento=" +
+                encodeURIComponent(asientoSeleccionado);
+            alert("Función: " + funcionId + " | Asiento: " + asientoSeleccionado);
+            window.location.href = url;
+        }
+    </script>
 
 </body>
+
 </html>

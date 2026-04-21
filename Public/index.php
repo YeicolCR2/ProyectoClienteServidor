@@ -168,6 +168,67 @@ switch ($route) {
         $controller->eliminarAsiento();
         break;
 
+    case 'editar-cine-form':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->editarCineForm();
+        break;
+
+    case 'actualizar-cine':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->actualizarCine();
+        break;
+
+
+    case 'editar-sala-form':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->editarSalaForm();
+        break;
+
+    case 'actualizar-sala':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->actualizarSala();
+        break;
+
+    case 'editar-genero-form':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->editarGeneroForm();
+        break;
+
+    case 'actualizar-genero':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->actualizarGenero();
+        break;
+
+    case 'editar-funcion-form':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->editarFuncionForm();
+        break;
+
+    case 'actualizar-funcion':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->actualizarFuncion();
+        break;
+
+    case 'editar-asiento-form':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->editarAsientoForm();
+        break;
+
+    case 'actualizar-asiento':
+        require_once __DIR__ . '/../App/Controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->actualizarAsiento();
+        break;
+
     // 🔴 DEFAULT
     default:
         echo "<h1>404 - Página no encontrada</h1>";

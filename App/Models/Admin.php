@@ -84,6 +84,51 @@ class Admin
         return $stmt->fetchAll();
     }
 
+    public function getCineById($id)
+    {
+        $sql = "SELECT * FROM Cine WHERE id_cine = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public function getSalaById($id)
+    {
+        $sql = "SELECT * FROM Sala WHERE id_sala = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public function getGeneroById($id)
+    {
+        $sql = "SELECT * FROM Genero WHERE id_genero = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public function getFuncionById($id)
+    {
+        $sql = "SELECT * FROM Funcion WHERE id_funcion = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public function getAsientoById($id)
+    {
+        $sql = "SELECT * FROM Asiento WHERE id_asiento = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
     // ------------------------------------------------------------
     // Métodos de inserción (INSERT)
     // ------------------------------------------------------------
@@ -198,6 +243,83 @@ class Admin
         return $stmt->execute();
     }
 
+    public function updateCine($id, $nombre, $direccion, $ciudad)
+    {
+        $sql = "UPDATE Cine SET
+            nombre = :nombre,
+            direccion = :direccion,
+            ciudad = :ciudad
+            WHERE id_cine = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':direccion', $direccion);
+        $stmt->bindParam(':ciudad', $ciudad);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function updateSala($id, $numero, $tipo, $id_cine)
+    {
+        $sql = "UPDATE Sala SET
+            numero = :numero,
+            tipo = :tipo,
+            id_cine = :id_cine
+            WHERE id_sala = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':numero', $numero);
+        $stmt->bindParam(':tipo', $tipo);
+        $stmt->bindParam(':id_cine', $id_cine, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function updateGenero($id, $nombre, $id_pelicula)
+    {
+        $sql = "UPDATE Genero SET
+            nombre = :nombre,
+            id_pelicula = :id_pelicula
+            WHERE id_genero = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':id_pelicula', $id_pelicula, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function updateFuncion($id, $fecha, $hora, $precio, $id_pelicula, $id_sala)
+    {
+        $sql = "UPDATE Funcion SET
+            fecha = :fecha,
+            hora = :hora,
+            precio = :precio,
+            id_pelicula = :id_pelicula,
+            id_sala = :id_sala
+            WHERE id_funcion = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':fecha', $fecha);
+        $stmt->bindParam(':hora', $hora);
+        $stmt->bindParam(':precio', $precio);
+        $stmt->bindParam(':id_pelicula', $id_pelicula, PDO::PARAM_INT);
+        $stmt->bindParam(':id_sala', $id_sala, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function updateAsiento($id, $fila, $numero, $id_sala)
+    {
+        $sql = "UPDATE Asiento SET
+            fila = :fila,
+            numero = :numero,
+            id_sala = :id_sala
+            WHERE id_asiento = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':fila', $fila);
+        $stmt->bindParam(':numero', $numero);
+        $stmt->bindParam(':id_sala', $id_sala, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
     // ------------------------------------------------------------
     // Métodos de eliminación (DELETE)
     // ------------------------------------------------------------
@@ -205,7 +327,7 @@ class Admin
     {
         try {
             $this->conn->beginTransaction();
-    
+
             // Eliminar asientos de salas que pertenecen al cine
             $sqlAsientos = "DELETE a
                         FROM Asiento a

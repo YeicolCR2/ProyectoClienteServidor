@@ -14,7 +14,23 @@ class Movie
     // Obtener todas las películas en cartelera
     public function obtenerPeliculas()
     {
-        $sql = "SELECT * FROM Pelicula WHERE estado = 'cartelera' ORDER BY id_pelicula DESC";
+        $sql = "SELECT 
+                p.id_pelicula,
+                p.titulo,
+                p.duracion,
+                p.descripcion,
+                p.fecha_estreno,
+                p.estado,
+                p.imagen,
+                f.id_funcion,
+                f.fecha,
+                f.hora,
+                f.id_sala
+            FROM Pelicula p
+            INNER JOIN Funcion f ON p.id_pelicula = f.id_pelicula
+            WHERE p.estado = 'cartelera'
+            ORDER BY p.id_pelicula DESC, f.hora ASC";
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

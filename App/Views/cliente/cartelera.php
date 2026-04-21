@@ -36,12 +36,20 @@ if (!isset($_SESSION['usuario'])) {
                     <li><a href="/public/index.php?route=cines">CINES</a></li>
                     <li><a href="/public/index.php?route=contacto">CONTACTO</a></li>
                     <li><a href="/public/index.php?route=reservas">MIS RESERVAS</a></li>
+                    <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] == 1): ?>
+                        <li><a href="/public/index.php?route=admin">ADMIN</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
 
             <div class="user-menu">
-                <span>👤 <?php echo $_SESSION['usuario']['nombre']; ?></span>
-                <a href="/public/index.php?route=logout" class="btn-logout">CERRAR SESIÓN</a>
+                <span class="user-pill">
+                    👤 <?php echo $_SESSION['usuario']['nombre']; ?>
+                </span>
+
+                <a href="/public/index.php?route=logout" class="btn-logout">
+                    CERRAR SESIÓN
+                </a>
             </div>
 
         </div>
@@ -54,14 +62,23 @@ if (!isset($_SESSION['usuario'])) {
         <?php if (isset($peliculas) && count($peliculas) > 0): ?>
             <?php foreach ($peliculas as $pelicula): ?>
                 <div class="pelicula-card">
+
                     <img src="/public/pic/<?php echo htmlspecialchars($pelicula['imagen'] ?? 'default.jpg'); ?>"
                         alt="<?php echo htmlspecialchars($pelicula['titulo']); ?>"
                         style="width:200px; height:auto;">
+
                     <h3><?php echo htmlspecialchars($pelicula['titulo']); ?></h3>
+
                     <p>Duración: <?php echo $pelicula['duracion']; ?> min</p>
                     <p><?php echo htmlspecialchars($pelicula['descripcion']); ?></p>
                     <p>Estreno: <?php echo $pelicula['fecha_estreno']; ?></p>
-                    <a href="/public/index.php?route=asientos&id=<?php echo $pelicula['id_pelicula']; ?>">Seleccionar Asiento</a>
+
+                    <div class="pelicula-actions">
+                        <a href="/public/index.php?route=asientos&id=<?php echo $pelicula['id_funcion']; ?>">
+                            Seleccionar asiento
+                        </a>
+                    </div>
+
                 </div>
             <?php endforeach; ?>
 
