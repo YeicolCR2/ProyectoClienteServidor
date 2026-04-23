@@ -81,7 +81,6 @@ if (session_status() === PHP_SESSION_NONE) {
                         </a>
                     </div>
                 </div>
-                <!-- No hay formulario ni duplicados -->
             </div>
         </div>
     </main>
