@@ -10,7 +10,6 @@ class PeliculaController {
             session_start();
         }
 
-        // 🔥 seguridad (mejor en controller)
         if (!isset($_SESSION['usuario'])) {
             header("Location: /public/index.php?route=login");
             exit;
@@ -20,12 +19,10 @@ class PeliculaController {
 
         try {
 
-            // 🔥 obtenemos directamente
             $peliculas = $movieModel->obtenerPeliculas() ?? [];
 
         } catch (Exception $e) {
 
-            // 🔥 fallback seguro
             $peliculas = [];
 
             // opcional debug

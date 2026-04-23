@@ -153,3 +153,26 @@
 .no-peliculas {
     text-align: center;
 }
+
+
+.btn-asiento {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+
+    background: linear-gradient(90deg, #7a3cff, #00eaff);
+    color: white;
+
+    box-shadow: 0 0 12px rgba(122, 60, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+.btn-asiento:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #5a2cff, #00c8d7);
+    box-shadow: 0 0 18px rgba(0, 234, 255, 0.6);
+}
