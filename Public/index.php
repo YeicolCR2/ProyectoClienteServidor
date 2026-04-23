@@ -4,7 +4,6 @@ session_start();
 // Obtener la ruta (por defecto: home)
 $route = $_GET['route'] ?? 'home';
 
-// 🔥 Rutas públicas (NO requieren login)
 $rutas_publicas = ['login'];
 
 // Si NO hay sesión y no es ruta pública → forzar login
@@ -37,7 +36,6 @@ switch ($route) {
         require_once __DIR__ . '/../App/Views/cliente/contacto.php';
         break;
 
-    // 🔹 RESERVAS
     case 'reserva':
         require_once __DIR__ . '/../App/Controllers/ReservaController.php';
         $controller = new ReservaController();
@@ -62,14 +60,13 @@ switch ($route) {
         $controller->guardarConAsiento();
         break;
 
-    // 🔥 NUEVO: CANCELAR RESERVA
     case 'cancelar_reserva':
         require_once __DIR__ . '/../App/Controllers/ReservaController.php';
         $controller = new ReservaController();
         $controller->cancelar();
         break;
 
-    // 🔹 AUTH
+    
     case 'login':
         require_once __DIR__ . '/../App/Views/auth/login.php';
         break;
@@ -79,7 +76,6 @@ switch ($route) {
         header("Location: /public/index.php?route=login");
         exit;
 
-        // 🔹 ADMIN
     case 'admin':
         require_once __DIR__ . '/../App/Controllers/AdminController.php';
         $controller = new AdminController();
@@ -229,7 +225,6 @@ switch ($route) {
         $controller->actualizarAsiento();
         break;
 
-    // 🔴 DEFAULT
     default:
         echo "<h1>404 - Página no encontrada</h1>";
         break;

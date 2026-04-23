@@ -124,7 +124,6 @@ function procesarPago() {
         return;
     }
 
-    // 🔥 ENVÍA AL BACKEND (MVC REAL)
     window.location.href =
         "/public/index.php?route=reserva&id=" +
         datosReserva.peliculaId +
