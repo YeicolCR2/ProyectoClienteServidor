@@ -12,11 +12,9 @@ class Reserva
         $database = new Database();
         $this->conn = $database->conectar();
 
-        // 🔥 IMPORTANTE: activar errores PDO
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    // 🔥 CREAR RESERVA SIMPLE
     public function crearReserva($id_usuario, $id_funcion)
     {
 
@@ -31,7 +29,6 @@ class Reserva
         return $stmt->execute();
     }
 
-    // 🔥 CREAR RESERVA + ASIENTO (PRO)
     public function crearReservaConAsiento($id_usuario, $id_funcion, $id_asiento)
     {
         try {
@@ -70,7 +67,6 @@ class Reserva
         }
     }
 
-    // 🔥 OBTENER RESERVAS DEL USUARIO
     public function obtenerReservasPorUsuario($id_usuario)
     {
 
@@ -93,7 +89,6 @@ class Reserva
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // 🔥 OBTENER SOLO IDs DE ASIENTOS OCUPADOS (MEJORADO)
     public function obtenerAsientosOcupados($id_funcion)
     {
         $sql = "SELECT id_asiento FROM Reserva_Asiento WHERE id_funcion = :id_funcion";
@@ -104,7 +99,6 @@ class Reserva
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    // 🔥 ELIMINAR RESERVA (CON INTEGRIDAD REFERENCIAL)
     public function eliminarReserva($id_reserva)
     {
         try {
@@ -130,7 +124,6 @@ class Reserva
 
             $this->conn->rollBack();
 
-            // 🔥 opcional debug
             // echo $e->getMessage();
 
             return false;

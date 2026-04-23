@@ -74,7 +74,7 @@ if (!isset($_SESSION['usuario'])) {
                     <p>Estreno: <?php echo $pelicula['fecha_estreno']; ?></p>
 
                     <div class="pelicula-actions">
-                        <a href="/public/index.php?route=asientos&id=<?php echo $pelicula['id_funcion']; ?>">
+                        <a class="btn-asiento" href="/public/index.php?route=asientos&id=<?php echo $pelicula['id_funcion']; ?>">
                             Seleccionar asiento
                         </a>
                     </div>
